@@ -19,12 +19,16 @@
 - (NSArray *) arrayWithImageUrlStrings;
 - (UIViewContentMode) contentModeForImage:(NSUInteger)image;
 
+@optional
+- (UIImage *) placeHolderImageForImagePager;
+
 @end
 
 @protocol KIImagePagerDelegate
 
 @optional
 - (void) imagePager:(KIImagePager *)imagePager didScrollToIndex:(NSUInteger)index;
+- (void) imagePager:(KIImagePager *)imagePager didSelectImageAtIndex:(NSUInteger)index;
 
 @end
 
@@ -35,6 +39,8 @@
 
 @property (assign) UIViewContentMode contentMode;
 @property (nonatomic, retain) UIPageControl *pageControl;
+
+- (void) reloadData;
 
 @end
 

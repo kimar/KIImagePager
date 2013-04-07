@@ -19,6 +19,7 @@
     
     UIScrollView *_scrollView;
     UIPageControl *_pageControl;
+    UILabel *_countLabel;
 }
 @end
 
@@ -70,9 +71,11 @@
 #pragma mark - General
 - (void) initialize
 {
+    self.clipsToBounds = YES;
     [self initializeScrollView];
     [self initializePageControl];
     [self initalizeImageCounter];
+    [self loadData];
 }
 
 - (UIColor *) randomColor
@@ -86,7 +89,7 @@
 - (void) initalizeImageCounter
 {
     UIView *background = [[UIView alloc] initWithFrame:CGRectMake(_scrollView.frame.size.width-(kOverlayWidth-4),
-                                                                  _scrollView.frame.size.height-(kOverlayHeight-4),
+                                                                  _scrollView.frame.size.height-kOverlayHeight,
                                                                   kOverlayWidth,
                                                                   kOverlayHeight)];
     background.backgroundColor = [UIColor whiteColor];
@@ -98,16 +101,23 @@
     icon.center = CGPointMake(background.frame.size.width-18, background.frame.size.height/2);
     [background addSubview:icon];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 24)];
-    [label setText:[NSString stringWithFormat:@"%d", [[_dataSource arrayWithImageUrlStrings] count]]];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [label setBackgroundColor:[UIColor clearColor]];
-    [label setTextColor:[UIColor blackColor]];
-    [label setFont:[UIFont systemFontOfSize:11.0f]];
-    label.center = CGPointMake(15, background.frame.size.height/2);
-    [background addSubview:label];
+    _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 24)];
+    [_countLabel setTextAlignment:NSTextAlignmentCenter];
+    [_countLabel setBackgroundColor:[UIColor clearColor]];
+    [_countLabel setTextColor:[UIColor blackColor]];
+    [_countLabel setFont:[UIFont systemFontOfSize:11.0f]];
+    _countLabel.center = CGPointMake(15, background.frame.size.height/2);
+    [background addSubview:_countLabel];
     
     [self addSubview:background];
+}
+
+- (void) reloadData
+{
+    for (UIView *view in _scrollView.subviews)
+        [view removeFromSuperview];
+    
+    [self loadData];
 }
 
 #pragma mark - ScrollView Initialization
@@ -120,20 +130,51 @@
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.autoresizingMask = self.autoresizingMask;
     [self addSubview:_scrollView];
-    
+}
+
+- (void) loadData
+{
     NSArray *aImageUrls = (NSArray *)[_dataSource arrayWithImageUrlStrings];
-    [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width * [aImageUrls count],
-                                           _scrollView.frame.size.height)];
-    
-    for (int i = 0; i < [aImageUrls count]; i++)
+    if([aImageUrls count] > 0)
     {
-        CGRect imageFrame = CGRectMake(_scrollView.frame.size.width * i, 0, _scrollView.frame.size.width, _scrollView.frame.size.height);
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
-        [imageView setBackgroundColor:[self randomColor]];
-        [imageView setContentMode:[_dataSource contentModeForImage:i]];
-        [imageView setImageWithURL:[NSURL URLWithString:(NSString *)[aImageUrls objectAtIndex:i]]];
-        [_scrollView addSubview:imageView];
+        [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width * [aImageUrls count],
+                                               _scrollView.frame.size.height)];
+        
+        for (int i = 0; i < [aImageUrls count]; i++)
+        {
+            CGRect imageFrame = CGRectMake(_scrollView.frame.size.width * i, 0, _scrollView.frame.size.width, _scrollView.frame.size.height);
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
+            [imageView setBackgroundColor:[self randomColor]];
+            [imageView setContentMode:[_dataSource contentModeForImage:i]];
+            [imageView setTag:i];
+            [imageView setImageWithURL:[NSURL URLWithString:(NSString *)[aImageUrls objectAtIndex:i]]];
+            
+            // Add GestureRecognizer to ImageView
+            UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
+                                                                  initWithTarget:self
+                                                                  action:@selector(imageTapped:)];
+            [singleTapGestureRecognizer setNumberOfTapsRequired:1];
+            [imageView addGestureRecognizer:singleTapGestureRecognizer];
+            [imageView setUserInteractionEnabled:YES];
+            
+            [_scrollView addSubview:imageView];
+        }
+        
+        [_countLabel setText:[NSString stringWithFormat:@"%d", [[_dataSource arrayWithImageUrlStrings] count]]];
+        _pageControl.numberOfPages = [(NSArray *)[_dataSource arrayWithImageUrlStrings] count];
     }
+    else
+    {
+        UIImageView *blankImage = [[UIImageView alloc] initWithFrame:_scrollView.frame];
+        [blankImage setImage:[_dataSource placeHolderImageForImagePager]];
+        [_scrollView addSubview:blankImage];
+    }
+}
+
+- (void) imageTapped:(UITapGestureRecognizer *)sender
+{
+    if(_delegate)
+        [_delegate imagePager:self didSelectImageAtIndex:[(UIGestureRecognizer *)sender view].tag];
 }
 
 #pragma mark - PageControl Initialization
@@ -142,7 +183,6 @@
     CGRect pageControlFrame = CGRectMake(0, 0, _scrollView.frame.size.width, kPageControlHeight);
     _pageControl = [[UIPageControl alloc] initWithFrame:pageControlFrame];
     _pageControl.center = CGPointMake(_scrollView.frame.size.width/2, _scrollView.frame.size.height - 12);
-    _pageControl.numberOfPages = [(NSArray *)[_dataSource arrayWithImageUrlStrings] count];
     _pageControl.userInteractionEnabled = NO;
     [self addSubview:_pageControl];
 }

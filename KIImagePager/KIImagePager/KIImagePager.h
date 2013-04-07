@@ -7,26 +7,32 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIImageView+WebCache.h"
 
 @class KIImagePager;
 
 @protocol KIImagePagerDataSource
 
-- (NSUInteger) numberOfImages;
-- (NSString *) urlStringForImageAtIndex:(NSUInteger)index;
+@required
+- (NSArray *) arrayWithImageUrlStrings;
+- (UIViewContentMode) contentModeForImage:(NSUInteger)image;
 
 @end
 
 @protocol KIImagePagerDelegate
 
+@optional
 - (void) imagePager:(KIImagePager *)imagePager didScrollToIndex:(NSUInteger)index;
 
 @end
 
 @interface KIImagePager : UIView
 
-@property (weak) id <KIImagePagerDataSource> dataSource;
-@property (weak) id <KIImagePagerDelegate> delegate;
+@property (weak) IBOutlet id <KIImagePagerDataSource> dataSource;
+@property (weak) IBOutlet id <KIImagePagerDelegate> delegate;
+
+@property (assign) UIViewContentMode contentMode;
+@property (nonatomic, retain) UIPageControl *pageControl;
 
 @end
 

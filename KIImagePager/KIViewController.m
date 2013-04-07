@@ -8,8 +8,10 @@
 
 #import "KIViewController.h"
 
-@interface KIViewController ()
-
+@interface KIViewController () <KIImagePagerDelegate, KIImagePagerDataSource>
+{
+    IBOutlet KIImagePager *_imagePager;
+}
 @end
 
 @implementation KIViewController
@@ -24,6 +26,21 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - KIImagePager DataSource
+- (NSArray *) arrayWithImageUrlStrings
+{
+    return [NSArray arrayWithObjects:
+            @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen1.png",
+            @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen2.png",
+            @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen3.png",
+            nil];
+}
+
+- (UIViewContentMode) contentModeForImage:(NSUInteger)image
+{
+    return UIViewContentModeScaleAspectFill;
 }
 
 @end

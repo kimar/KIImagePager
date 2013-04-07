@@ -18,6 +18,7 @@
 		2A10306017114B9100333366 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A10305F17114B9100333366 /* Default-568h@2x.png */; };
 		2A10306317114B9100333366 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10306117114B9100333366 /* MainStoryboard.storyboard */; };
 		2A10306617114B9100333366 /* KIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A10306517114B9100333366 /* KIViewController.m */; };
+		2A10306F17114BC300333366 /* KIImagePager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A10306E17114BC300333366 /* KIImagePager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		2A10306217114B9100333366 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		2A10306417114B9100333366 /* KIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KIViewController.h; sourceTree = "<group>"; };
 		2A10306517114B9100333366 /* KIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KIViewController.m; sourceTree = "<group>"; };
+		2A10306D17114BC300333366 /* KIImagePager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIImagePager.h; sourceTree = "<group>"; };
+		2A10306E17114BC300333366 /* KIImagePager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KIImagePager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,7 @@
 		2A10304F17114B9100333366 /* KIImagePager */ = {
 			isa = PBXGroup;
 			children = (
+				2A10306C17114BAD00333366 /* KIImagePager */,
 				2A10305817114B9100333366 /* KIAppDelegate.h */,
 				2A10305917114B9100333366 /* KIAppDelegate.m */,
 				2A10306117114B9100333366 /* MainStoryboard.storyboard */,
@@ -105,6 +109,15 @@
 				2A10305F17114B9100333366 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2A10306C17114BAD00333366 /* KIImagePager */ = {
+			isa = PBXGroup;
+			children = (
+				2A10306D17114BC300333366 /* KIImagePager.h */,
+				2A10306E17114BC300333366 /* KIImagePager.m */,
+			);
+			path = KIImagePager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +190,7 @@
 				2A10305617114B9100333366 /* main.m in Sources */,
 				2A10305A17114B9100333366 /* KIAppDelegate.m in Sources */,
 				2A10306617114B9100333366 /* KIViewController.m in Sources */,
+				2A10306F17114BC300333366 /* KIImagePager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

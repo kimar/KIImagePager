@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2A10304A17114B9100333366 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A10304917114B9100333366 /* UIKit.framework */; };
 		2A10304C17114B9100333366 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A10304B17114B9100333366 /* Foundation.framework */; };
-		2A10304E17114B9100333366 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A10304D17114B9100333366 /* CoreGraphics.framework */; };
 		2A10305417114B9100333366 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A10305217114B9100333366 /* InfoPlist.strings */; };
 		2A10305617114B9100333366 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A10305517114B9100333366 /* main.m */; };
 		2A10305A17114B9100333366 /* KIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A10305917114B9100333366 /* KIAppDelegate.m */; };
@@ -26,13 +25,16 @@
 		2A103090171161EF00333366 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A103084171161EF00333366 /* SDWebImagePrefetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2A103091171161EF00333366 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A103086171161EF00333366 /* UIButton+WebCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2A103092171161EF00333366 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A103088171161EF00333366 /* UIImageView+WebCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2A103098171168C100333366 /* KICamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A103096171168C100333366 /* KICamera.png */; };
+		2A103099171168C100333366 /* KICamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A103097171168C100333366 /* KICamera@2x.png */; };
+		2A10309B171169B300333366 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A10309A171169B300333366 /* QuartzCore.framework */; };
+		2A10309D171169C100333366 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A10309C171169C100333366 /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2A10304617114B9100333366 /* KIImagePager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KIImagePager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A10304917114B9100333366 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2A10304B17114B9100333366 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		2A10304D17114B9100333366 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2A10305117114B9100333366 /* KIImagePager-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KIImagePager-Info.plist"; sourceTree = "<group>"; };
 		2A10305317114B9100333366 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2A10305517114B9100333366 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -65,6 +67,10 @@
 		2A103086171161EF00333366 /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
 		2A103087171161EF00333366 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		2A103088171161EF00333366 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		2A103096171168C100333366 /* KICamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KICamera.png; sourceTree = "<group>"; };
+		2A103097171168C100333366 /* KICamera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KICamera@2x.png"; sourceTree = "<group>"; };
+		2A10309A171169B300333366 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2A10309C171169C100333366 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,9 +78,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A10309D171169C100333366 /* CoreGraphics.framework in Frameworks */,
+				2A10309B171169B300333366 /* QuartzCore.framework in Frameworks */,
 				2A10304A17114B9100333366 /* UIKit.framework in Frameworks */,
 				2A10304C17114B9100333366 /* Foundation.framework in Frameworks */,
-				2A10304E17114B9100333366 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,9 +108,10 @@
 		2A10304817114B9100333366 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A10309C171169C100333366 /* CoreGraphics.framework */,
+				2A10309A171169B300333366 /* QuartzCore.framework */,
 				2A10304917114B9100333366 /* UIKit.framework */,
 				2A10304B17114B9100333366 /* Foundation.framework */,
-				2A10304D17114B9100333366 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -140,6 +148,8 @@
 		2A10306C17114BAD00333366 /* KIImagePager */ = {
 			isa = PBXGroup;
 			children = (
+				2A103096171168C100333366 /* KICamera.png */,
+				2A103097171168C100333366 /* KICamera@2x.png */,
 				2A10306D17114BC300333366 /* KIImagePager.h */,
 				2A10306E17114BC300333366 /* KIImagePager.m */,
 			);
@@ -228,6 +238,8 @@
 				2A10305E17114B9100333366 /* Default@2x.png in Resources */,
 				2A10306017114B9100333366 /* Default-568h@2x.png in Resources */,
 				2A10306317114B9100333366 /* MainStoryboard.storyboard in Resources */,
+				2A103098171168C100333366 /* KICamera.png in Resources */,
+				2A103099171168C100333366 /* KICamera@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

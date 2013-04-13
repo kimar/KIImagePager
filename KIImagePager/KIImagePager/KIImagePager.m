@@ -20,6 +20,9 @@
     UIScrollView *_scrollView;
     UIPageControl *_pageControl;
     UILabel *_countLabel;
+    UIView *_indicatorBackground;
+    
+    BOOL _indicatorDisabled;
 }
 @end
 
@@ -29,6 +32,7 @@
 @synthesize delegate = _delegate;
 @synthesize contentMode = _contentMode;
 @synthesize pageControl = _pageControl;
+@synthesize indicatorDisabled = _indicatorDisabled;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -74,7 +78,8 @@
     self.clipsToBounds = YES;
     [self initializeScrollView];
     [self initializePageControl];
-    [self initalizeImageCounter];
+    if(!_indicatorDisabled)
+        [self initalizeImageCounter];
     [self loadData];
 }
 
@@ -88,28 +93,28 @@
 
 - (void) initalizeImageCounter
 {
-    UIView *background = [[UIView alloc] initWithFrame:CGRectMake(_scrollView.frame.size.width-(kOverlayWidth-4),
-                                                                  _scrollView.frame.size.height-kOverlayHeight,
-                                                                  kOverlayWidth,
-                                                                  kOverlayHeight)];
-    background.backgroundColor = [UIColor whiteColor];
-    background.alpha = 0.7f;
-    background.layer.cornerRadius = 5.0f;
+    _indicatorBackground = [[UIView alloc] initWithFrame:CGRectMake(_scrollView.frame.size.width-(kOverlayWidth-4),
+                                                                    _scrollView.frame.size.height-kOverlayHeight,
+                                                                    kOverlayWidth,
+                                                                    kOverlayHeight)];
+    _indicatorBackground.backgroundColor = [UIColor whiteColor];
+    _indicatorBackground.alpha = 0.7f;
+    _indicatorBackground.layer.cornerRadius = 5.0f;
     
     UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 18, 18)];
     [icon setImage:[UIImage imageNamed:@"KICamera"]];
-    icon.center = CGPointMake(background.frame.size.width-18, background.frame.size.height/2);
-    [background addSubview:icon];
+    icon.center = CGPointMake(_indicatorBackground.frame.size.width-18, _indicatorBackground.frame.size.height/2);
+    [_indicatorBackground addSubview:icon];
     
     _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 24)];
     [_countLabel setTextAlignment:NSTextAlignmentCenter];
     [_countLabel setBackgroundColor:[UIColor clearColor]];
     [_countLabel setTextColor:[UIColor blackColor]];
     [_countLabel setFont:[UIFont systemFontOfSize:11.0f]];
-    _countLabel.center = CGPointMake(15, background.frame.size.height/2);
-    [background addSubview:_countLabel];
+    _countLabel.center = CGPointMake(15, _indicatorBackground.frame.size.height/2);
+    [_indicatorBackground addSubview:_countLabel];
     
-    [self addSubview:background];
+    [self addSubview:_indicatorBackground];
 }
 
 - (void) reloadData
@@ -162,6 +167,7 @@
         
         [_countLabel setText:[NSString stringWithFormat:@"%d", [[_dataSource arrayWithImageUrlStrings] count]]];
         _pageControl.numberOfPages = [(NSArray *)[_dataSource arrayWithImageUrlStrings] count];
+        _pageControl.hidden = ([(NSArray *)[_dataSource arrayWithImageUrlStrings] count] > 0?NO:YES);
     }
     else
     {
@@ -175,6 +181,22 @@
 {
     if(_delegate)
         [_delegate imagePager:self didSelectImageAtIndex:[(UIGestureRecognizer *)sender view].tag];
+}
+
+- (void) setIndicatorDisabled:(BOOL)indicatorDisabled
+{
+    if(indicatorDisabled)
+    {
+        [_pageControl removeFromSuperview];
+        [_indicatorBackground removeFromSuperview];
+    }
+    else
+    {
+        [self addSubview:_pageControl];
+        [self addSubview:_indicatorBackground];
+    }
+    
+    _indicatorDisabled = indicatorDisabled;
 }
 
 #pragma mark - PageControl Initialization

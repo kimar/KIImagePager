@@ -39,6 +39,7 @@
 
 @property (assign) UIViewContentMode contentMode;
 @property (nonatomic, retain) UIPageControl *pageControl;
+@property (nonatomic, assign) BOOL indicatorDisabled;
 
 - (void) reloadData;
 

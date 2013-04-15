@@ -149,7 +149,7 @@
         {
             CGRect imageFrame = CGRectMake(_scrollView.frame.size.width * i, 0, _scrollView.frame.size.width, _scrollView.frame.size.height);
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
-            [imageView setBackgroundColor:[self randomColor]];
+            [imageView setBackgroundColor:[UIColor clearColor]];
             [imageView setContentMode:[_dataSource contentModeForImage:i]];
             [imageView setTag:i];
             [imageView setImageWithURL:[NSURL URLWithString:(NSString *)[aImageUrls objectAtIndex:i]]];

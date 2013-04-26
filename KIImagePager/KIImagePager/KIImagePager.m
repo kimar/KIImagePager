@@ -180,7 +180,8 @@
 - (void) imageTapped:(UITapGestureRecognizer *)sender
 {
     if(_delegate)
-        [_delegate imagePager:self didSelectImageAtIndex:[(UIGestureRecognizer *)sender view].tag];
+        if([_delegate respondsToSelector:@selector(imagePager:didSelectImageAtIndex:)])
+            [_delegate imagePager:self didSelectImageAtIndex:[(UIGestureRecognizer *)sender view].tag];
 }
 
 - (void) setIndicatorDisabled:(BOOL)indicatorDisabled
@@ -212,7 +213,11 @@
 #pragma mark - ScrollView Delegate;
 - (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    _pageControl.currentPage = lround((float)scrollView.contentOffset.x / scrollView.frame.size.width);
+    int currentPage = lround((float)scrollView.contentOffset.x / scrollView.frame.size.width);
+    _pageControl.currentPage = currentPage;
+    if(_delegate)
+        if([_delegate respondsToSelector:@selector(imagePager:didScrollToIndex:)])
+            [_delegate imagePager:self didScrollToIndex:currentPage];
 }
 
 @end

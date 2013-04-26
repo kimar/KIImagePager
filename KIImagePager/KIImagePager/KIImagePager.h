@@ -24,7 +24,7 @@
 
 @end
 
-@protocol KIImagePagerDelegate
+@protocol KIImagePagerDelegate <NSObject>
 
 @optional
 - (void) imagePager:(KIImagePager *)imagePager didScrollToIndex:(NSUInteger)index;

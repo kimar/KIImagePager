@@ -152,7 +152,14 @@
             [imageView setBackgroundColor:[UIColor clearColor]];
             [imageView setContentMode:[_dataSource contentModeForImage:i]];
             [imageView setTag:i];
-            [imageView setImageWithURL:[NSURL URLWithString:(NSString *)[aImageUrls objectAtIndex:i]]];
+
+            // Asynchronously retrieve image
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:(NSString *)[aImageUrls objectAtIndex:i]]];
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [imageView setImage:[UIImage imageWithData:imageData]];
+                });
+            });
             
             // Add GestureRecognizer to ImageView
             UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]

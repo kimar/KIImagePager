@@ -158,11 +158,15 @@
                 // Set ImageView's Image directly
                 [imageView setImage:(UIImage *)[aImageUrls objectAtIndex:i]];
             }
-            else if([[aImageUrls objectAtIndex:i] isKindOfClass:[NSString class]])
+            else if([[aImageUrls objectAtIndex:i] isKindOfClass:[NSString class]] ||
+                    [[aImageUrls objectAtIndex:i] isKindOfClass:[NSURL class]])
             {
                 // Asynchronously retrieve image
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-                    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:(NSString *)[aImageUrls objectAtIndex:i]]];
+                    NSData *imageData = [NSData dataWithContentsOfURL:
+                                         [[aImageUrls objectAtIndex:i] isKindOfClass:[NSURL class]]?
+                                         [aImageUrls objectAtIndex:i]:
+                                         [NSURL URLWithString:(NSString *)[aImageUrls objectAtIndex:i]]];
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         [imageView setImage:[UIImage imageWithData:imageData]];
                     });

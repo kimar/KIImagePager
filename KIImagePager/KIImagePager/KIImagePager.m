@@ -139,7 +139,7 @@
 
 - (void) loadData
 {
-    NSArray *aImageUrls = (NSArray *)[_dataSource arrayWithImageUrlStrings];
+    NSArray *aImageUrls = (NSArray *)[_dataSource arrayWithImages];
     if([aImageUrls count] > 0)
     {
         [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width * [aImageUrls count],
@@ -153,13 +153,21 @@
             [imageView setContentMode:[_dataSource contentModeForImage:i]];
             [imageView setTag:i];
 
-            // Asynchronously retrieve image
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-                NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:(NSString *)[aImageUrls objectAtIndex:i]]];
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    [imageView setImage:[UIImage imageWithData:imageData]];
+            if([[aImageUrls objectAtIndex:i] isKindOfClass:[UIImage class]])
+            {
+                // Set ImageView's Image directly
+                [imageView setImage:(UIImage *)[aImageUrls objectAtIndex:i]];
+            }
+            else if([[aImageUrls objectAtIndex:i] isKindOfClass:[NSString class]])
+            {
+                // Asynchronously retrieve image
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:(NSString *)[aImageUrls objectAtIndex:i]]];
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        [imageView setImage:[UIImage imageWithData:imageData]];
+                    });
                 });
-            });
+            }
             
             // Add GestureRecognizer to ImageView
             UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
@@ -172,9 +180,9 @@
             [_scrollView addSubview:imageView];
         }
         
-        [_countLabel setText:[NSString stringWithFormat:@"%d", [[_dataSource arrayWithImageUrlStrings] count]]];
-        _pageControl.numberOfPages = [(NSArray *)[_dataSource arrayWithImageUrlStrings] count];
-        _pageControl.hidden = ([(NSArray *)[_dataSource arrayWithImageUrlStrings] count] > 0?NO:YES);
+        [_countLabel setText:[NSString stringWithFormat:@"%d", [[_dataSource arrayWithImages] count]]];
+        _pageControl.numberOfPages = [(NSArray *)[_dataSource arrayWithImages] count];
+        _pageControl.hidden = ([(NSArray *)[_dataSource arrayWithImages] count] > 0?NO:YES);
     }
     else
     {

@@ -37,7 +37,7 @@
 }
 
 #pragma mark - KIImagePager DataSource
-- (NSArray *) arrayWithImageUrlStrings
+- (NSArray *) arrayWithImages
 {
     return [NSArray arrayWithObjects:
             @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen1.png",

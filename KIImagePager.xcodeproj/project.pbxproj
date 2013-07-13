@@ -22,7 +22,25 @@
 		2A103099171168C100333366 /* KICamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A103097171168C100333366 /* KICamera@2x.png */; };
 		2A10309B171169B300333366 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A10309A171169B300333366 /* QuartzCore.framework */; };
 		2A10309D171169C100333366 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A10309C171169C100333366 /* CoreGraphics.framework */; };
+		2A70F38617917A9300DA8F8F /* KICamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A103096171168C100333366 /* KICamera.png */; };
+		2A70F38717917A9800DA8F8F /* KICamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A103097171168C100333366 /* KICamera@2x.png */; };
+		2AE758CF1791721B00EC65B5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE758CE1791721B00EC65B5 /* SenTestingKit.framework */; };
+		2AE758D01791721B00EC65B5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A10304917114B9100333366 /* UIKit.framework */; };
+		2AE758D11791721B00EC65B5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A10304B17114B9100333366 /* Foundation.framework */; };
+		2AE758D71791721B00EC65B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AE758D51791721B00EC65B5 /* InfoPlist.strings */; };
+		2AE758DA1791721B00EC65B5 /* KIImagePagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE758D91791721B00EC65B5 /* KIImagePagerTests.m */; };
+		2AE758E1179172B100EC65B5 /* KIImagePager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A10306E17114BC300333366 /* KIImagePager.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2AE758DF1791722A00EC65B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A10303E17114B9100333366 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A10304517114B9100333366;
+			remoteInfo = KIImagePager;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2A10304617114B9100333366 /* KIImagePager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KIImagePager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +64,12 @@
 		2A103097171168C100333366 /* KICamera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KICamera@2x.png"; sourceTree = "<group>"; };
 		2A10309A171169B300333366 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2A10309C171169C100333366 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2AE758CD1791721B00EC65B5 /* KIImagePagerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KIImagePagerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AE758CE1791721B00EC65B5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		2AE758D41791721B00EC65B5 /* KIImagePagerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KIImagePagerTests-Info.plist"; sourceTree = "<group>"; };
+		2AE758D61791721B00EC65B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2AE758D91791721B00EC65B5 /* KIImagePagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KIImagePagerTests.m; sourceTree = "<group>"; };
+		2AE758DB1791721B00EC65B5 /* KIImagePagerTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KIImagePagerTests-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +84,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2AE758C91791721B00EC65B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AE758CF1791721B00EC65B5 /* SenTestingKit.framework in Frameworks */,
+				2AE758D01791721B00EC65B5 /* UIKit.framework in Frameworks */,
+				2AE758D11791721B00EC65B5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -67,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				2A10304F17114B9100333366 /* KIImagePager */,
+				2AE758D21791721B00EC65B5 /* KIImagePagerTests */,
 				2A10304817114B9100333366 /* Frameworks */,
 				2A10304717114B9100333366 /* Products */,
 			);
@@ -76,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				2A10304617114B9100333366 /* KIImagePager.app */,
+				2AE758CD1791721B00EC65B5 /* KIImagePagerTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,6 +123,7 @@
 				2A10309A171169B300333366 /* QuartzCore.framework */,
 				2A10304917114B9100333366 /* UIKit.framework */,
 				2A10304B17114B9100333366 /* Foundation.framework */,
+				2AE758CE1791721B00EC65B5 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -130,6 +167,25 @@
 			path = KIImagePager;
 			sourceTree = "<group>";
 		};
+		2AE758D21791721B00EC65B5 /* KIImagePagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				2AE758D91791721B00EC65B5 /* KIImagePagerTests.m */,
+				2AE758D31791721B00EC65B5 /* Supporting Files */,
+			);
+			path = KIImagePagerTests;
+			sourceTree = "<group>";
+		};
+		2AE758D31791721B00EC65B5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2AE758D41791721B00EC65B5 /* KIImagePagerTests-Info.plist */,
+				2AE758D51791721B00EC65B5 /* InfoPlist.strings */,
+				2AE758DB1791721B00EC65B5 /* KIImagePagerTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,6 +205,25 @@
 			productName = KIImagePager;
 			productReference = 2A10304617114B9100333366 /* KIImagePager.app */;
 			productType = "com.apple.product-type.application";
+		};
+		2AE758CC1791721B00EC65B5 /* KIImagePagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2AE758DE1791721B00EC65B5 /* Build configuration list for PBXNativeTarget "KIImagePagerTests" */;
+			buildPhases = (
+				2AE758C81791721B00EC65B5 /* Sources */,
+				2AE758C91791721B00EC65B5 /* Frameworks */,
+				2AE758CA1791721B00EC65B5 /* Resources */,
+				2AE758CB1791721B00EC65B5 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2AE758E01791722A00EC65B5 /* PBXTargetDependency */,
+			);
+			name = KIImagePagerTests;
+			productName = KIImagePagerTests;
+			productReference = 2AE758CD1791721B00EC65B5 /* KIImagePagerTests.octest */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -173,6 +248,7 @@
 			projectRoot = "";
 			targets = (
 				2A10304517114B9100333366 /* KIImagePager */,
+				2AE758CC1791721B00EC65B5 /* KIImagePagerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -192,7 +268,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2AE758CA1791721B00EC65B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AE758D71791721B00EC65B5 /* InfoPlist.strings in Resources */,
+				2A70F38617917A9300DA8F8F /* KICamera.png in Resources */,
+				2A70F38717917A9800DA8F8F /* KICamera@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2AE758CB1791721B00EC65B5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2A10304217114B9100333366 /* Sources */ = {
@@ -206,7 +308,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2AE758C81791721B00EC65B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AE758DA1791721B00EC65B5 /* KIImagePagerTests.m in Sources */,
+				2AE758E1179172B100EC65B5 /* KIImagePager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2AE758E01791722A00EC65B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A10304517114B9100333366 /* KIImagePager */;
+			targetProxy = 2AE758DF1791722A00EC65B5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2A10305217114B9100333366 /* InfoPlist.strings */ = {
@@ -223,6 +342,14 @@
 				2A10306217114B9100333366 /* en */,
 			);
 			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		2AE758D51791721B00EC65B5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AE758D61791721B00EC65B5 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -306,6 +433,40 @@
 			};
 			name = Release;
 		};
+		2AE758DC1791721B00EC65B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KIImagePager.app/KIImagePager";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KIImagePagerTests/KIImagePagerTests-Prefix.pch";
+				INFOPLIST_FILE = "KIImagePagerTests/KIImagePagerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		2AE758DD1791721B00EC65B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KIImagePager.app/KIImagePager";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KIImagePagerTests/KIImagePagerTests-Prefix.pch";
+				INFOPLIST_FILE = "KIImagePagerTests/KIImagePagerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -323,6 +484,15 @@
 			buildConfigurations = (
 				2A10306A17114B9100333366 /* Debug */,
 				2A10306B17114B9100333366 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2AE758DE1791721B00EC65B5 /* Build configuration list for PBXNativeTarget "KIImagePagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2AE758DC1791721B00EC65B5 /* Debug */,
+				2AE758DD1791721B00EC65B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

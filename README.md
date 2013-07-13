@@ -1,5 +1,11 @@
 ## KIImagePager
 
+
+### Now going v1.0.0!
+***Please be aware that this Update breaks some of the existing APIs, please check KIImagePagerDatasource before updating to the current Version!***
+
+---
+
 This UIView Subclass is used to present Images loaded from the Web and is inspired from foursquare's Image Slideshow. The used will be downloaded asynchronously. Former dependencies on SDWebImage have been removed.
 
 Implementing the ImagePager is fairly easy, just set it up in Interface Builder:
@@ -20,15 +26,21 @@ Optionally customize the PageControl's appearance:
 Now implement it's DataSource and (optionally) Delegate methods:
 
 ```objective-c
-- (NSArray *) arrayWithImageUrlStrings
+- (NSArray *) arrayWithImages
 {
     return [NSArray arrayWithObjects:
             @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen1.png",
+            [UIImage imageNamed:@"MySuperImage1"],
             @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen2.png",
+            [UIImage imageNamed:@"MySuperImage2"],
             @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen3.png",
             nil];
 }
+```
 
+As you can see, it's now perfectly ok to mix urlStrings as well as UIImages inside *arrayWithImages* DataSource Mewthod.
+
+```objective-c
 - (UIViewContentMode) contentModeForImage:(NSUInteger)image
 {
     return UIViewContentModeScaleAspectFill;

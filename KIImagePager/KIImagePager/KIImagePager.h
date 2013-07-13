@@ -14,7 +14,7 @@
 @protocol KIImagePagerDataSource
 
 @required
-- (NSArray *) arrayWithImageUrlStrings;
+- (NSArray *) arrayWithImages;
 - (UIViewContentMode) contentModeForImage:(NSUInteger)image;
 
 @optional

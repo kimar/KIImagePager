@@ -38,6 +38,7 @@
 @property (assign) UIViewContentMode contentMode;
 @property (nonatomic, retain) UIPageControl *pageControl;
 @property (nonatomic, assign) BOOL indicatorDisabled;
+@property (assign) NSUInteger slideshowTimeInterval;
 
 - (void) reloadData;
 

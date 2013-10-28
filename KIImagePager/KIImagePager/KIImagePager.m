@@ -21,6 +21,8 @@
     UIPageControl *_pageControl;
     UILabel *_countLabel;
     UIView *_indicatorBackground;
+    NSTimer *_slideshowTimer;
+    NSUInteger _slideshowTimeInterval;
     
     BOOL _indicatorDisabled;
 }
@@ -52,15 +54,6 @@
     }
     return self;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 - (void) awakeFromNib
 {
@@ -237,6 +230,37 @@
     if(_delegate)
         if([_delegate respondsToSelector:@selector(imagePager:didScrollToIndex:)])
             [_delegate imagePager:self didScrollToIndex:currentPage];
+}
+
+#pragma mark - Slideshow
+- (void) slideshowTick:(NSTimer *)timer
+{    
+    NSUInteger nextPage = 0;
+    if([_pageControl currentPage] < ([[_dataSource arrayWithImages] count] - 1)) {
+        nextPage = [_pageControl currentPage] + 1;
+    }
+
+    [_scrollView scrollRectToVisible:CGRectMake(self.frame.size.width * nextPage, 0, self.frame.size.width, self.frame.size.width) animated:YES];
+    [_pageControl setCurrentPage:nextPage];
+}
+
+#pragma mark - Setter / Getter
+- (void) setSlideshowTimeInterval:(NSUInteger)slideshowTimeInterval
+{
+    _slideshowTimeInterval = slideshowTimeInterval;
+    
+    if([_slideshowTimer isValid]) {
+        [_slideshowTimer invalidate];
+    }
+    
+    if (_slideshowTimeInterval > 0) {
+        _slideshowTimer = [NSTimer scheduledTimerWithTimeInterval:_slideshowTimeInterval target:self selector:@selector(slideshowTick:) userInfo:nil repeats:YES];
+    }
+}
+
+- (NSUInteger) slideshowTimeInterval
+{
+    return _slideshowTimeInterval;
 }
 
 @end

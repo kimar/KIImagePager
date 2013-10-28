@@ -1,8 +1,8 @@
 ## KIImagePager
 
 
-### Now going v1.0.0!
-***Please be aware that this Update breaks some of the existing APIs, please check KIImagePagerDatasource before updating to the current Version!***
+### v1.1.0
+***Please be aware that v1.0.0 broke some of the existing APIs, please check KIImagePagerDatasource before updating to the current Version!***
 
 ---
 
@@ -45,6 +45,11 @@ As you can see, it's now perfectly ok to mix urlStrings as well as UIImages insi
 {
     return UIViewContentModeScaleAspectFill;
 }
+```
+
+If you'd like to get a SlideShow, just give it an interval for the time between those single slides:
+```objective-c
+_imagePager.slideshowTimeInterval = 1.5f;
 ```
 
 This is how it looks like, after you've set it up:

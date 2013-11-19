@@ -1,5 +1,7 @@
 ## KIImagePager
 
+[![Build Status](https://travis-ci.org/kimar/KIImagePager.png)](https://travis-ci.org/kimar/KIImagePager)
+
 
 ### v1.1.0
 ***Please be aware that v1.0.0 broke some of the existing APIs, please check KIImagePagerDatasource before updating to the current Version!***

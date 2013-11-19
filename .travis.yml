@@ -1,0 +1,2 @@
+language: objective-c
+script: xctool -project KIImagePager.xcodeproj -scheme 'KIImagePager' -configuration Release -sdk iphonesimulator -arch i386 build

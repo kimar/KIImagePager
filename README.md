@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.org/kimar/KIImagePager.png)](https://travis-ci.org/kimar/KIImagePager)
 
 
-### v1.1.0
+### v1.2.0
 ***Please be aware that v1.0.0 broke some of the existing APIs, please check KIImagePagerDatasource before updating to the current Version!***
 
 ---
@@ -13,7 +13,7 @@
 This UIView Subclass is used to present Images loaded from the Web and is inspired from foursquare's Image Slideshow. The used will be downloaded asynchronously. Former dependencies on SDWebImage have been removed.
 
 Implementing the ImagePager is fairly easy, just set it up in Interface Builder:
-![Setup in Interface Builder](http://kimar.github.io/screenshots/kiimagepager/ibsetup.png)
+![Setup in Interface Builder](http://kimar.github.io/screenshots/kiimagepager/ibsetup_xcode5.png)
 
 Optionally customize the PageControl's appearance:
 
@@ -58,8 +58,8 @@ _imagePager.slideshowTimeInterval = 1.5f;
 
 This is how it looks like, after you've set it up:
 
-![While loading the Image](http://kimar.github.io/screenshots/kiimagepager/1.png)
-![After loading the Image](http://kimar.github.io/screenshots/kiimagepager/2.png)
+![While loading the Image](http://kimar.github.io/screenshots/kiimagepager/1ios7.png)
+![After loading the Image](http://kimar.github.io/screenshots/kiimagepager/2ios7.png)
 
 **The MIT License (MIT)**
 

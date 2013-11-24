@@ -23,6 +23,7 @@
     UIView *_indicatorBackground;
     NSTimer *_slideshowTimer;
     NSUInteger _slideshowTimeInterval;
+    NSMutableDictionary *_activityIndicators;
     
     BOOL _indicatorDisabled;
 }
@@ -71,8 +72,9 @@
     self.clipsToBounds = YES;
     [self initializeScrollView];
     [self initializePageControl];
-    if(!_indicatorDisabled)
+    if(!_indicatorDisabled) {
         [self initalizeImageCounter];
+    }
     [self loadData];
 }
 
@@ -133,6 +135,8 @@
 - (void) loadData
 {
     NSArray *aImageUrls = (NSArray *)[_dataSource arrayWithImages];
+    _activityIndicators = [NSMutableDictionary new];
+    
     if([aImageUrls count] > 0)
     {
         [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width * [aImageUrls count],
@@ -154,6 +158,14 @@
             else if([[aImageUrls objectAtIndex:i] isKindOfClass:[NSString class]] ||
                     [[aImageUrls objectAtIndex:i] isKindOfClass:[NSURL class]])
             {
+                // Instantiate and show Actvity Indicator
+                UIActivityIndicatorView *activityIndicator = [UIActivityIndicatorView new];
+                activityIndicator.center = (CGPoint){_scrollView.frame.size.width/2, _scrollView.frame.size.height/2};
+                activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+                [imageView addSubview:activityIndicator];
+                [activityIndicator startAnimating];
+                [_activityIndicators setObject:activityIndicator forKey:[NSString stringWithFormat:@"%d", i]];
+                
                 // Asynchronously retrieve image
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
                     NSData *imageData = [NSData dataWithContentsOfURL:
@@ -162,6 +174,13 @@
                                          [NSURL URLWithString:(NSString *)[aImageUrls objectAtIndex:i]]];
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         [imageView setImage:[UIImage imageWithData:imageData]];
+
+                        // Stop and Remove Activity Indicator
+                        UIActivityIndicatorView *indicatorView = (UIActivityIndicatorView *)[_activityIndicators objectForKey:[NSString stringWithFormat:@"%d", i]];
+                        if (indicatorView) {
+                            [indicatorView stopAnimating];
+                            [_activityIndicators removeObjectForKey:[NSString stringWithFormat:@"%d", i]];
+                        }
                     });
                 });
             }

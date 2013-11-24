@@ -39,8 +39,7 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    if ((self = [super initWithFrame:frame]))
-    {
+    if ((self = [super initWithFrame:frame])) {
         // Initialization code
         [self initialize];
     }
@@ -49,8 +48,7 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    if ((self = [super initWithCoder:aDecoder]))
-    {
+    if ((self = [super initWithCoder:aDecoder])) {
         // Initialization code
     }
     return self;
@@ -137,27 +135,22 @@
     NSArray *aImageUrls = (NSArray *)[_dataSource arrayWithImages];
     _activityIndicators = [NSMutableDictionary new];
     
-    if([aImageUrls count] > 0)
-    {
+    if([aImageUrls count] > 0) {
         [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width * [aImageUrls count],
                                                _scrollView.frame.size.height)];
         
-        for (int i = 0; i < [aImageUrls count]; i++)
-        {
+        for (int i = 0; i < [aImageUrls count]; i++) {
             CGRect imageFrame = CGRectMake(_scrollView.frame.size.width * i, 0, _scrollView.frame.size.width, _scrollView.frame.size.height);
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
             [imageView setBackgroundColor:[UIColor clearColor]];
             [imageView setContentMode:[_dataSource contentModeForImage:i]];
             [imageView setTag:i];
 
-            if([[aImageUrls objectAtIndex:i] isKindOfClass:[UIImage class]])
-            {
+            if([[aImageUrls objectAtIndex:i] isKindOfClass:[UIImage class]]) {
                 // Set ImageView's Image directly
                 [imageView setImage:(UIImage *)[aImageUrls objectAtIndex:i]];
-            }
-            else if([[aImageUrls objectAtIndex:i] isKindOfClass:[NSString class]] ||
-                    [[aImageUrls objectAtIndex:i] isKindOfClass:[NSURL class]])
-            {
+            } else if([[aImageUrls objectAtIndex:i] isKindOfClass:[NSString class]] ||
+                      [[aImageUrls objectAtIndex:i] isKindOfClass:[NSURL class]]) {
                 // Instantiate and show Actvity Indicator
                 UIActivityIndicatorView *activityIndicator = [UIActivityIndicatorView new];
                 activityIndicator.center = (CGPoint){_scrollView.frame.size.width/2, _scrollView.frame.size.height/2};
@@ -199,9 +192,7 @@
         [_countLabel setText:[NSString stringWithFormat:@"%d", [[_dataSource arrayWithImages] count]]];
         _pageControl.numberOfPages = [(NSArray *)[_dataSource arrayWithImages] count];
         _pageControl.hidden = ([(NSArray *)[_dataSource arrayWithImages] count] > 0?NO:YES);
-    }
-    else
-    {
+    } else {
         UIImageView *blankImage = [[UIImageView alloc] initWithFrame:_scrollView.frame];
         [blankImage setImage:[_dataSource placeHolderImageForImagePager]];
         [_scrollView addSubview:blankImage];
@@ -210,20 +201,17 @@
 
 - (void) imageTapped:(UITapGestureRecognizer *)sender
 {
-    if(_delegate)
-        if([_delegate respondsToSelector:@selector(imagePager:didSelectImageAtIndex:)])
-            [_delegate imagePager:self didSelectImageAtIndex:[(UIGestureRecognizer *)sender view].tag];
+    if([_delegate respondsToSelector:@selector(imagePager:didSelectImageAtIndex:)]) {
+        [_delegate imagePager:self didSelectImageAtIndex:[(UIGestureRecognizer *)sender view].tag];
+    }
 }
 
 - (void) setIndicatorDisabled:(BOOL)indicatorDisabled
 {
-    if(indicatorDisabled)
-    {
+    if(indicatorDisabled) {
         [_pageControl removeFromSuperview];
         [_indicatorBackground removeFromSuperview];
-    }
-    else
-    {
+    } else {
         [self addSubview:_pageControl];
         [self addSubview:_indicatorBackground];
     }
@@ -246,9 +234,10 @@
 {
     int currentPage = lround((float)scrollView.contentOffset.x / scrollView.frame.size.width);
     _pageControl.currentPage = currentPage;
-    if(_delegate)
-        if([_delegate respondsToSelector:@selector(imagePager:didScrollToIndex:)])
-            [_delegate imagePager:self didScrollToIndex:currentPage];
+
+    if([_delegate respondsToSelector:@selector(imagePager:didScrollToIndex:)]) {
+        [_delegate imagePager:self didScrollToIndex:currentPage];
+    }
 }
 
 #pragma mark - Slideshow

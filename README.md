@@ -30,13 +30,13 @@ Now implement it's DataSource and (optionally) Delegate methods:
 ```objective-c
 - (NSArray *) arrayWithImages
 {
-    return [NSArray arrayWithObjects:
+    return @[
             @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen1.png",
             [UIImage imageNamed:@"MySuperImage1"],
             @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen2.png",
             [UIImage imageNamed:@"MySuperImage2"],
-            @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen3.png",
-            nil];
+            @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen3.png"
+            ];
 }
 ```
 

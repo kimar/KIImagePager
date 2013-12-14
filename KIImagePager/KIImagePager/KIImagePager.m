@@ -73,6 +73,7 @@
     self.captionBackgroundColor = [UIColor whiteColor];
     self.captionTextColor = [UIColor blackColor];
     self.captionFont = [UIFont fontWithName:@"Helvetica-Light" size:12.0f];
+    self.hidePageControlForSinglePages = YES;
     
     [self initializeScrollView];
     [self initializePageControl];
@@ -213,7 +214,6 @@
         
         [_countLabel setText:[NSString stringWithFormat:@"%d", [[_dataSource arrayWithImages] count]]];
         _pageControl.numberOfPages = [(NSArray *)[_dataSource arrayWithImages] count];
-        _pageControl.hidden = ([(NSArray *)[_dataSource arrayWithImages] count] > 0?NO:YES);
     } else {
         UIImageView *blankImage = [[UIImageView alloc] initWithFrame:_scrollView.frame];
         [blankImage setImage:[_dataSource placeHolderImageForImagePager]];
@@ -249,6 +249,13 @@
     _pageControl.center = CGPointMake(_scrollView.frame.size.width/2, _scrollView.frame.size.height - 12);
     _pageControl.userInteractionEnabled = NO;
     [self addSubview:_pageControl];
+    
+    if (self.hidePageControlForSinglePages) {
+        NSLog(@"COUNT: %d", [(NSArray *)[_dataSource arrayWithImages] count]);
+        if ([(NSArray *)[_dataSource arrayWithImages] count] < 2) {
+            [_pageControl setHidden:YES];
+        }
+    }
 }
 
 #pragma mark - ScrollView Delegate;
@@ -309,7 +316,9 @@
     }
     
     if (_slideshowTimeInterval > 0) {
-        _slideshowTimer = [NSTimer scheduledTimerWithTimeInterval:_slideshowTimeInterval target:self selector:@selector(slideshowTick:) userInfo:nil repeats:YES];
+        if ([(NSArray *)[_dataSource arrayWithImages] count] > 1) {
+            _slideshowTimer = [NSTimer scheduledTimerWithTimeInterval:_slideshowTimeInterval target:self selector:@selector(slideshowTick:) userInfo:nil repeats:YES];
+        }
     }
 }
 
@@ -334,6 +343,18 @@
 {
     [_captionLabel setFont:captionFont];
     _captionFont = captionFont;
+}
+
+- (void) setHidePageControlForSinglePages:(BOOL)hidePageControlForSinglePages
+{
+    _hidePageControlForSinglePages = hidePageControlForSinglePages;
+    if (hidePageControlForSinglePages) {
+        if ([(NSArray *)[_dataSource arrayWithImages] count] < 2) {
+            [_pageControl setHidden:YES];
+            return;
+        }
+    }
+    [_pageControl setHidden:NO];
 }
 
 @end

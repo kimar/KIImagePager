@@ -41,10 +41,11 @@
 @property (assign) UIViewContentMode contentMode;
 @property (nonatomic, retain) UIPageControl *pageControl;
 @property (nonatomic, assign) BOOL indicatorDisabled;
+@property (nonatomic, assign) BOOL hidePageControlForSinglePages; // Defaults YES
 
 // Slideshow
-@property (assign) NSUInteger slideshowTimeInterval; // Default 0.0f (off)
-@property (assign) BOOL slideshowShouldCallScrollToDelegate; // Default: YES
+@property (assign) NSUInteger slideshowTimeInterval; // Defaults 0.0f (off)
+@property (assign) BOOL slideshowShouldCallScrollToDelegate; // Defaults YES
 
 // Caption Label
 @property (nonatomic, strong) UIColor *captionTextColor; // Defaults Black

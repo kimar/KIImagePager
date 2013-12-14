@@ -53,7 +53,7 @@
     return UIViewContentModeScaleAspectFill;
 }
 
-- (NSString *)captionForImageAtIndex:(NSUInteger)index
+- (NSString *) captionForImageAtIndex:(NSUInteger)index
 {
     return @[
              @"First screenshot",

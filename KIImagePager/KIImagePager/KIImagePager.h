@@ -39,6 +39,7 @@
 @property (nonatomic, retain) UIPageControl *pageControl;
 @property (nonatomic, assign) BOOL indicatorDisabled;
 @property (assign) NSUInteger slideshowTimeInterval;
+@property (assign) BOOL slideshowShouldCallScrollToDelegate;
 
 - (void) reloadData;
 

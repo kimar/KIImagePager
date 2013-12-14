@@ -68,6 +68,7 @@
 - (void) initialize
 {
     self.clipsToBounds = YES;
+    self.slideshowShouldCallScrollToDelegate = YES;
     [self initializeScrollView];
     [self initializePageControl];
     if(!_indicatorDisabled) {
@@ -235,14 +236,20 @@
     int currentPage = lround((float)scrollView.contentOffset.x / scrollView.frame.size.width);
     _pageControl.currentPage = currentPage;
 
+    [self fireDidScrollToIndexDelegateForPage:currentPage];
+}
+
+#pragma mark - Delegate Helper
+- (void) fireDidScrollToIndexDelegateForPage:(NSUInteger)page
+{
     if([_delegate respondsToSelector:@selector(imagePager:didScrollToIndex:)]) {
-        [_delegate imagePager:self didScrollToIndex:currentPage];
+        [_delegate imagePager:self didScrollToIndex:page];
     }
 }
 
 #pragma mark - Slideshow
 - (void) slideshowTick:(NSTimer *)timer
-{    
+{
     NSUInteger nextPage = 0;
     if([_pageControl currentPage] < ([[_dataSource arrayWithImages] count] - 1)) {
         nextPage = [_pageControl currentPage] + 1;
@@ -250,6 +257,10 @@
 
     [_scrollView scrollRectToVisible:CGRectMake(self.frame.size.width * nextPage, 0, self.frame.size.width, self.frame.size.width) animated:YES];
     [_pageControl setCurrentPage:nextPage];
+    
+    if (self.slideshowShouldCallScrollToDelegate) {
+        [self fireDidScrollToIndexDelegateForPage:nextPage];
+    }
 }
 
 #pragma mark - Setter / Getter

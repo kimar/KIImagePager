@@ -11,7 +11,7 @@
 
 @class KIImagePager;
 
-@protocol KIImagePagerDataSource
+@protocol KIImagePagerDataSource <NSObject>
 
 @required
 - (NSArray *) arrayWithImages;
@@ -19,6 +19,7 @@
 
 @optional
 - (UIImage *) placeHolderImageForImagePager;
+- (NSString *) captionForImageAtIndex:(NSUInteger)index;
 
 @end
 
@@ -32,14 +33,23 @@
 
 @interface KIImagePager : UIView
 
+// Delegate and Datasource
 @property (weak) IBOutlet id <KIImagePagerDataSource> dataSource;
 @property (weak) IBOutlet id <KIImagePagerDelegate> delegate;
 
+// General
 @property (assign) UIViewContentMode contentMode;
 @property (nonatomic, retain) UIPageControl *pageControl;
 @property (nonatomic, assign) BOOL indicatorDisabled;
-@property (assign) NSUInteger slideshowTimeInterval;
-@property (assign) BOOL slideshowShouldCallScrollToDelegate;
+
+// Slideshow
+@property (assign) NSUInteger slideshowTimeInterval; // Default 0.0f (off)
+@property (assign) BOOL slideshowShouldCallScrollToDelegate; // Default: YES
+
+// Caption Label
+@property (nonatomic, strong) UIColor *captionTextColor; // Defaults Black
+@property (nonatomic, strong) UIColor *captionBackgroundColor; // Defaults White (with an alpha of .7f)
+@property (nonatomic, strong) UIFont *captionFont; // Defaults to Helvetica 12.0f points
 
 - (void) reloadData;
 

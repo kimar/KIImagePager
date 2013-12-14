@@ -20,6 +20,7 @@
     UIScrollView *_scrollView;
     UIPageControl *_pageControl;
     UILabel *_countLabel;
+    UILabel *_captionLabel;
     UIView *_indicatorBackground;
     NSTimer *_slideshowTimer;
     NSUInteger _slideshowTimeInterval;
@@ -69,11 +70,16 @@
 {
     self.clipsToBounds = YES;
     self.slideshowShouldCallScrollToDelegate = YES;
+    self.captionBackgroundColor = [UIColor whiteColor];
+    self.captionTextColor = [UIColor blackColor];
+    self.captionFont = [UIFont fontWithName:@"Helvetica-Light" size:12.0f];
+    
     [self initializeScrollView];
     [self initializePageControl];
     if(!_indicatorDisabled) {
         [self initalizeImageCounter];
     }
+    [self initializeCaption];
     [self loadData];
 }
 
@@ -111,6 +117,19 @@
     [self addSubview:_indicatorBackground];
 }
 
+- (void) initializeCaption
+{
+    _captionLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, _scrollView.frame.size.width - 10, 20)];
+    [_captionLabel setBackgroundColor:self.captionBackgroundColor];
+    [_captionLabel setTextColor:self.captionTextColor];
+    [_captionLabel setFont:self.captionFont];
+
+    _captionLabel.alpha = 0.7f;
+    _captionLabel.layer.cornerRadius = 5.0f;
+    
+    [self addSubview:_captionLabel];
+}
+
 - (void) reloadData
 {
     for (UIView *view in _scrollView.subviews)
@@ -135,6 +154,8 @@
 {
     NSArray *aImageUrls = (NSArray *)[_dataSource arrayWithImages];
     _activityIndicators = [NSMutableDictionary new];
+    
+    [self updateCaptionLabelForImageAtIndex:0];
     
     if([aImageUrls count] > 0) {
         [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width * [aImageUrls count],
@@ -235,11 +256,24 @@
 {
     int currentPage = lround((float)scrollView.contentOffset.x / scrollView.frame.size.width);
     _pageControl.currentPage = currentPage;
-
+    
+    [self updateCaptionLabelForImageAtIndex:currentPage];
     [self fireDidScrollToIndexDelegateForPage:currentPage];
 }
 
 #pragma mark - Delegate Helper
+- (void) updateCaptionLabelForImageAtIndex:(NSUInteger)index
+{
+    if ([_dataSource respondsToSelector:@selector(captionForImageAtIndex:)]) {
+        if ([[_dataSource captionForImageAtIndex:index] length] > 0) {
+            [_captionLabel setHidden:NO];
+            [_captionLabel setText:[NSString stringWithFormat:@" %@", [_dataSource captionForImageAtIndex:index]]];
+            return;
+        }
+    }
+    [_captionLabel setHidden:YES];
+}
+
 - (void) fireDidScrollToIndexDelegateForPage:(NSUInteger)page
 {
     if([_delegate respondsToSelector:@selector(imagePager:didScrollToIndex:)]) {
@@ -257,6 +291,8 @@
 
     [_scrollView scrollRectToVisible:CGRectMake(self.frame.size.width * nextPage, 0, self.frame.size.width, self.frame.size.width) animated:YES];
     [_pageControl setCurrentPage:nextPage];
+    
+    [self updateCaptionLabelForImageAtIndex:nextPage];
     
     if (self.slideshowShouldCallScrollToDelegate) {
         [self fireDidScrollToIndexDelegateForPage:nextPage];
@@ -280,6 +316,24 @@
 - (NSUInteger) slideshowTimeInterval
 {
     return _slideshowTimeInterval;
+}
+
+- (void) setCaptionBackgroundColor:(UIColor *)captionBackgroundColor
+{
+    [_captionLabel setBackgroundColor:captionBackgroundColor];
+    _captionBackgroundColor = captionBackgroundColor;
+}
+
+- (void) setCaptionTextColor:(UIColor *)captionTextColor
+{
+    [_captionLabel setTextColor:captionTextColor];
+    _captionTextColor = captionTextColor;
+}
+
+- (void) setCaptionFont:(UIFont *)captionFont
+{
+    [_captionLabel setFont:captionFont];
+    _captionFont = captionFont;
 }
 
 @end

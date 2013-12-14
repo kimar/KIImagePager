@@ -41,16 +41,25 @@
 #pragma mark - KIImagePager DataSource
 - (NSArray *) arrayWithImages
 {
-    return [NSArray arrayWithObjects:
+    return @[
             @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen1.png",
             @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen2.png",
-            @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen3.png",
-            nil];
+            @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen3.png"
+            ];
 }
 
 - (UIViewContentMode) contentModeForImage:(NSUInteger)image
 {
     return UIViewContentModeScaleAspectFill;
+}
+
+- (NSString *)captionForImageAtIndex:(NSUInteger)index
+{
+    return @[
+             @"First screenshot",
+             @"Another screenshot",
+             @"Last one! ;-)"
+             ][index];
 }
 
 #pragma mark - KIImagePager Delegate

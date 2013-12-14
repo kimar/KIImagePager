@@ -40,12 +40,24 @@ Now implement it's DataSource and (optionally) Delegate methods:
 }
 ```
 
-As you can see, it's now perfectly ok to mix urlStrings as well as UIImages inside *arrayWithImages* DataSource Mewthod.
+As you can see, it's now perfectly ok to mix urlStrings as well as UIImages inside *arrayWithImages* DataSource method.
 
 ```objective-c
 - (UIViewContentMode) contentModeForImage:(NSUInteger)image
 {
     return UIViewContentModeScaleAspectFill;
+}
+```
+
+Optionally you might define a caption title which will be shown above the images using the *captionForImageAtIndex* DataSource method.
+```objective-c
+- (NSString *) captionForImageAtIndex:(NSUInteger)index
+{
+    return @[
+             @"First screenshot",
+             @"Another screenshot",
+             @"Last one! ;-)"
+             ][index];
 }
 ```
 

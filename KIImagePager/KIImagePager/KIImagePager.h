@@ -40,6 +40,7 @@
 // General
 @property (assign) UIViewContentMode contentMode;
 @property (nonatomic, retain) UIPageControl *pageControl;
+@property (nonatomic, assign) NSUInteger currentPage;
 @property (nonatomic, assign) BOOL indicatorDisabled;
 @property (nonatomic, assign) BOOL hidePageControlForSinglePages; // Defaults YES
 
@@ -53,6 +54,7 @@
 @property (nonatomic, strong) UIFont *captionFont; // Defaults to Helvetica 12.0f points
 
 - (void) reloadData;
+- (void) setCurrentPage:(NSUInteger)currentPage animated:(BOOL)animated;
 
 @end
 

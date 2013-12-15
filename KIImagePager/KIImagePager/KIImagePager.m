@@ -355,4 +355,22 @@
     [_pageControl setHidden:NO];
 }
 
+- (NSUInteger) currentPage
+{
+    return [_pageControl currentPage];
+}
+
+- (void) setCurrentPage:(NSUInteger)currentPage
+{
+    [self setCurrentPage:currentPage animated:YES];
+}
+
+- (void) setCurrentPage:(NSUInteger)currentPage animated:(BOOL)animated
+{
+    NSAssert((currentPage < [(NSArray *)[_dataSource arrayWithImages] count]), @"currentPage must not exceed maximum number of images");
+    
+    [_pageControl setCurrentPage:currentPage];
+    [_scrollView scrollRectToVisible:CGRectMake(self.frame.size.width * currentPage, 0, self.frame.size.width, self.frame.size.width) animated:animated];
+}
+
 @end

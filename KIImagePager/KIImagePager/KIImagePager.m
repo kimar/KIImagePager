@@ -137,6 +137,7 @@
         [view removeFromSuperview];
     
     [self loadData];
+    [self checkWetherToToggleSlideshowTimer];
 }
 
 #pragma mark - ScrollView Initialization
@@ -249,13 +250,6 @@
     _pageControl.center = CGPointMake(_scrollView.frame.size.width/2, _scrollView.frame.size.height - 12);
     _pageControl.userInteractionEnabled = NO;
     [self addSubview:_pageControl];
-    
-    if (self.hidePageControlForSinglePages) {
-        NSLog(@"COUNT: %d", [(NSArray *)[_dataSource arrayWithImages] count]);
-        if ([(NSArray *)[_dataSource arrayWithImages] count] < 2) {
-            [_pageControl setHidden:YES];
-        }
-    }
 }
 
 #pragma mark - ScrollView Delegate;
@@ -306,6 +300,15 @@
     }
 }
 
+- (void) checkWetherToToggleSlideshowTimer
+{
+    if (_slideshowTimeInterval > 0) {
+        if ([(NSArray *)[_dataSource arrayWithImages] count] > 1) {
+            _slideshowTimer = [NSTimer scheduledTimerWithTimeInterval:_slideshowTimeInterval target:self selector:@selector(slideshowTick:) userInfo:nil repeats:YES];
+        }
+    }
+}
+
 #pragma mark - Setter / Getter
 - (void) setSlideshowTimeInterval:(NSUInteger)slideshowTimeInterval
 {
@@ -314,12 +317,7 @@
     if([_slideshowTimer isValid]) {
         [_slideshowTimer invalidate];
     }
-    
-    if (_slideshowTimeInterval > 0) {
-        if ([(NSArray *)[_dataSource arrayWithImages] count] > 1) {
-            _slideshowTimer = [NSTimer scheduledTimerWithTimeInterval:_slideshowTimeInterval target:self selector:@selector(slideshowTick:) userInfo:nil repeats:YES];
-        }
-    }
+    [self checkWetherToToggleSlideshowTimer];
 }
 
 - (NSUInteger) slideshowTimeInterval

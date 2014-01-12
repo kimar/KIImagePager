@@ -10,6 +10,10 @@
 
 This UIView Subclass is used to present Images loaded from the Web and is inspired from foursquare's Image Slideshow. The used will be downloaded asynchronously. Former dependencies on SDWebImage have been removed.
 
+This is what the ImagePager looks like when it's set up:
+
+![Demo GIF Animation](http://kimar.github.io/screenshots/kiimagepager/demo.gif)
+
 Implementing the ImagePager is fairly easy, just set it up in Interface Builder:
 ![Setup in Interface Builder](http://kimar.github.io/screenshots/kiimagepager/ibsetup_xcode5.png)
 
@@ -66,10 +70,6 @@ If you'd like to get a SlideShow, just give it an interval for the time between 
 _imagePager.slideshowTimeInterval = 1.5f;
 ```
 
-This is how it looks like, after you've set it up:
-
-![While loading the Image](http://kimar.github.io/screenshots/kiimagepager/1ios7.png)
-![After loading the Image](http://kimar.github.io/screenshots/kiimagepager/2ios7.png)
 
 **The MIT License (MIT)**
 

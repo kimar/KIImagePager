@@ -34,7 +34,7 @@
     
     _imagePager.pageControl.currentPageIndicatorTintColor = [UIColor lightGrayColor];
     _imagePager.pageControl.pageIndicatorTintColor = [UIColor blackColor];
-    _imagePager.slideshowTimeInterval = 1.5f;
+    _imagePager.slideshowTimeInterval = 5.5f;
     _imagePager.slideshowShouldCallScrollToDelegate = YES;
 }
 

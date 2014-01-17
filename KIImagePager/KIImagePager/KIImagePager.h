@@ -43,6 +43,7 @@
 @property (nonatomic) CGPoint pageControlCenter;
 @property (nonatomic, assign) NSUInteger currentPage;
 @property (nonatomic, assign) BOOL indicatorDisabled;
+@property (nonatomic, assign) BOOL imageCounterDisabled;
 @property (nonatomic, assign) BOOL hidePageControlForSinglePages; // Defaults YES
 
 // Slideshow

@@ -75,6 +75,8 @@
     self.captionFont = [UIFont fontWithName:@"Helvetica-Light" size:12.0f];
     self.hidePageControlForSinglePages = YES;
     
+    _pageControlCenter = CGPointMake(_scrollView.frame.size.width / 2, _scrollView.frame.size.height - 12.0);
+
     [self initializeScrollView];
     [self initializePageControl];
     if(!_indicatorDisabled) {
@@ -247,7 +249,7 @@
 {
     CGRect pageControlFrame = CGRectMake(0, 0, _scrollView.frame.size.width, kPageControlHeight);
     _pageControl = [[UIPageControl alloc] initWithFrame:pageControlFrame];
-    _pageControl.center = CGPointMake(_scrollView.frame.size.width/2, _scrollView.frame.size.height - 12);
+    _pageControl.center = self.pageControlCenter;
     _pageControl.userInteractionEnabled = NO;
     [self addSubview:_pageControl];
 }
@@ -353,6 +355,13 @@
         }
     }
     [_pageControl setHidden:NO];
+}
+
+- (void) setPageControlCenter:(CGPoint)pageControlCenter
+{
+    _pageControlCenter = pageControlCenter;
+
+    _pageControl.center = pageControlCenter;
 }
 
 - (NSUInteger) currentPage

@@ -264,6 +264,14 @@
 }
 
 #pragma mark - ScrollView Delegate;
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if([_slideshowTimer isValid]) {
+        [_slideshowTimer invalidate];
+    }
+    [self checkWetherToToggleSlideshowTimer];
+}
+
 - (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     long currentPage = lround((float)scrollView.contentOffset.x / scrollView.frame.size.width);

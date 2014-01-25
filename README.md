@@ -26,8 +26,11 @@ Optionally customize the PageControl's appearance:
     
     _imagePager.pageControl.currentPageIndicatorTintColor = [UIColor lightGrayColor];
     _imagePager.pageControl.pageIndicatorTintColor = [UIColor blackColor];
+    _imagePager.pageControlCenter = CGPointMake(CGRectGetWidth(_imagePager.frame) / 2, CGRectGetHeight(_imagePager.frame) - 42);
 }
 ```
+
+PageControl and ImageCounter can be hidden separately by setting ``imageCounterDisabled`` and ``imageCounterDisabled`` property. There is also a property ``hidePageControlForSinglePages``.
 
 Now implement it's DataSource and (optionally) Delegate methods:
 

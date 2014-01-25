@@ -215,7 +215,7 @@
             [_scrollView addSubview:imageView];
         }
         
-        [_countLabel setText:[NSString stringWithFormat:@"%d", [[_dataSource arrayWithImages] count]]];
+        [_countLabel setText:[NSString stringWithFormat:@"%lu", (unsigned long)[[_dataSource arrayWithImages] count]]];
         _pageControl.numberOfPages = [(NSArray *)[_dataSource arrayWithImages] count];
     } else {
         UIImageView *blankImage = [[UIImageView alloc] initWithFrame:_scrollView.frame];
@@ -266,7 +266,7 @@
 #pragma mark - ScrollView Delegate;
 - (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    int currentPage = lround((float)scrollView.contentOffset.x / scrollView.frame.size.width);
+    long currentPage = lround((float)scrollView.contentOffset.x / scrollView.frame.size.width);
     _pageControl.currentPage = currentPage;
     
     [self updateCaptionLabelForImageAtIndex:currentPage];

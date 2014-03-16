@@ -17,7 +17,6 @@
     __weak id <KIImagePagerDataSource> _dataSource;
     __weak id <KIImagePagerDelegate> _delegate;
     
-    UIScrollView *_scrollView;
     UIPageControl *_pageControl;
     UILabel *_countLabel;
     UILabel *_captionLabel;

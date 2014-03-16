@@ -38,17 +38,18 @@
 @property (weak) IBOutlet id <KIImagePagerDelegate> delegate;
 
 // General
-@property (assign) UIViewContentMode contentMode;
-@property (nonatomic, retain) UIPageControl *pageControl;
+@property (nonatomic) UIViewContentMode contentMode;
+@property (nonatomic) UIScrollView *scrollView;
+@property (nonatomic) UIPageControl *pageControl;
 @property (nonatomic) CGPoint pageControlCenter;
-@property (nonatomic, assign) NSUInteger currentPage;
-@property (nonatomic, assign) BOOL indicatorDisabled;
-@property (nonatomic, assign) BOOL imageCounterDisabled;
-@property (nonatomic, assign) BOOL hidePageControlForSinglePages; // Defaults YES
+@property (nonatomic) NSUInteger currentPage;
+@property (nonatomic) BOOL indicatorDisabled;
+@property (nonatomic) BOOL imageCounterDisabled;
+@property (nonatomic) BOOL hidePageControlForSinglePages; // Defaults YES
 
 // Slideshow
-@property (assign) NSUInteger slideshowTimeInterval; // Defaults 0.0f (off)
-@property (assign) BOOL slideshowShouldCallScrollToDelegate; // Defaults YES
+@property (nonatomic) NSUInteger slideshowTimeInterval; // Defaults 0.0f (off)
+@property (nonatomic) BOOL slideshowShouldCallScrollToDelegate; // Defaults YES
 
 // Caption Label
 @property (nonatomic, strong) UIColor *captionTextColor; // Defaults Black

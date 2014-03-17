@@ -61,6 +61,9 @@
 
 - (void) layoutSubviews
 {
+	for (UIView *view in self.subviews) {
+		[view removeFromSuperview];
+	}
     [self initialize];
 }
 

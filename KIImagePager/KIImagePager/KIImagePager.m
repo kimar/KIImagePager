@@ -78,9 +78,7 @@
     self.captionTextColor = [UIColor blackColor];
     self.captionFont = [UIFont fontWithName:@"Helvetica-Light" size:12.0f];
     self.hidePageControlForSinglePages = YES;
-
-    _pageControlCenter = CGPointMake(_scrollView.frame.size.width / 2, _scrollView.frame.size.height - 12.0);
-
+    
     [self initializeScrollView];
     [self initializePageControl];
     if(!_imageCounterDisabled) {
@@ -263,7 +261,7 @@
 {
     CGRect pageControlFrame = CGRectMake(0, 0, _scrollView.frame.size.width, kPageControlHeight);
     _pageControl = [[UIPageControl alloc] initWithFrame:pageControlFrame];
-    _pageControl.center = self.pageControlCenter;
+    _pageControl.center = CGPointMake(_scrollView.frame.size.width / 2, _scrollView.frame.size.height - 12.0);
     _pageControl.userInteractionEnabled = NO;
     [self addSubview:_pageControl];
 }
@@ -381,8 +379,6 @@
 
 - (void) setPageControlCenter:(CGPoint)pageControlCenter
 {
-    _pageControlCenter = pageControlCenter;
-
     _pageControl.center = pageControlCenter;
 }
 

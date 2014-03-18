@@ -41,7 +41,6 @@
 @property (nonatomic) UIViewContentMode contentMode;
 @property (nonatomic) UIScrollView *scrollView;
 @property (nonatomic) UIPageControl *pageControl;
-@property (nonatomic) CGPoint pageControlCenter;
 @property (nonatomic) NSUInteger currentPage;
 @property (nonatomic) BOOL indicatorDisabled;
 @property (nonatomic) BOOL bounces;

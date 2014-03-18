@@ -37,12 +37,11 @@
 @synthesize contentMode = _contentMode;
 @synthesize pageControl = _pageControl;
 @synthesize indicatorDisabled = _indicatorDisabled;
-@synthesize bounces = _bounces;
 
 - (id)initWithFrame:(CGRect)frame
 {
     if ((self = [super initWithFrame:frame])) {
-        _bounces = YES;
+		_bounces = YES;
         [self initialize];
     }
     return self;
@@ -51,6 +50,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if ((self = [super initWithCoder:aDecoder])) {
+		_bounces = YES;
         // Initialization code
     }
     return self;
@@ -245,6 +245,16 @@
     }
     
     _indicatorDisabled = indicatorDisabled;
+}
+
+- (BOOL)bounces {
+
+	return _bounces;
+}
+
+- (void)setBounces:(BOOL)bounces {
+	_bounces = bounces;
+	_scrollView.bounces = _bounces;
 }
 
 - (void)setImageCounterDisabled:(BOOL)imageCounterDisabled

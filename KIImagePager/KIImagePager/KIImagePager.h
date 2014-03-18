@@ -44,6 +44,7 @@
 @property (nonatomic) CGPoint pageControlCenter;
 @property (nonatomic) NSUInteger currentPage;
 @property (nonatomic) BOOL indicatorDisabled;
+@property (nonatomic) BOOL bounces;
 @property (nonatomic) BOOL imageCounterDisabled;
 @property (nonatomic) BOOL hidePageControlForSinglePages; // Defaults YES
 

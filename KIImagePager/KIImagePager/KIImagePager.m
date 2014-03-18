@@ -26,6 +26,7 @@
     NSMutableDictionary *_activityIndicators;
     
     BOOL _indicatorDisabled;
+	BOOL _bounces;
 }
 @end
 
@@ -36,11 +37,12 @@
 @synthesize contentMode = _contentMode;
 @synthesize pageControl = _pageControl;
 @synthesize indicatorDisabled = _indicatorDisabled;
+@synthesize bounces = _bounces;
 
 - (id)initWithFrame:(CGRect)frame
 {
     if ((self = [super initWithFrame:frame])) {
-        // Initialization code
+        _bounces = YES;
         [self initialize];
     }
     return self;
@@ -76,7 +78,7 @@
     self.captionTextColor = [UIColor blackColor];
     self.captionFont = [UIFont fontWithName:@"Helvetica-Light" size:12.0f];
     self.hidePageControlForSinglePages = YES;
-    
+
     _pageControlCenter = CGPointMake(_scrollView.frame.size.width / 2, _scrollView.frame.size.height - 12.0);
 
     [self initializeScrollView];
@@ -150,6 +152,7 @@
     _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     _scrollView.delegate = self;
     _scrollView.pagingEnabled = YES;
+	_scrollView.bounces = _bounces;
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.autoresizingMask = self.autoresizingMask;

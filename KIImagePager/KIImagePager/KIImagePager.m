@@ -277,7 +277,7 @@
 }
 
 #pragma mark - ScrollView Delegate;
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     if([_slideshowTimer isValid]) {
         [_slideshowTimer invalidate];

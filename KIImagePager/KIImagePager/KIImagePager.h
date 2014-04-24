@@ -15,7 +15,7 @@
 
 @required
 - (NSArray *) arrayWithImages;
-- (UIViewContentMode) contentModeForImage:(NSUInteger)image;
+- (UIViewContentMode) contentModeForImage:(NSUInteger)image isPlaceHolder:(BOOL)isPlaceHolder;
 
 @optional
 - (UIImage *) placeHolderImageForImagePager;

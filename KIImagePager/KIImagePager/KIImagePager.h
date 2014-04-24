@@ -20,6 +20,7 @@
 @optional
 - (UIImage *) placeHolderImageForImagePager;
 - (NSString *) captionForImageAtIndex:(NSUInteger)index;
+- (UIViewContentMode) contentModeForPlaceHolder;
 
 @end
 

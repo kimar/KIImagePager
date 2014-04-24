@@ -172,7 +172,7 @@
             CGRect imageFrame = CGRectMake(_scrollView.frame.size.width * i, 0, _scrollView.frame.size.width, _scrollView.frame.size.height);
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
             [imageView setBackgroundColor:[UIColor clearColor]];
-            [imageView setContentMode:[_dataSource contentModeForImage:i isPlaceHolder:NO]];
+            [imageView setContentMode:[_dataSource contentModeForImage:i]];
             [imageView setTag:i];
 
             if([[aImageUrls objectAtIndex:i] isKindOfClass:[UIImage class]]) {
@@ -223,7 +223,9 @@
     } else {
         UIImageView *blankImage = [[UIImageView alloc] initWithFrame:_scrollView.frame];
         [blankImage setImage:[_dataSource placeHolderImageForImagePager]];
-        [blankImage setContentMode:[_dataSource contentModeForImage:0 isPlaceHolder:YES]];
+        if([_dataSource respondsToSelector:@selector(contentModeForPlaceHolder)]) {
+            [blankImage setContentMode:[_dataSource contentModeForPlaceHolder]];
+        }
         [_scrollView addSubview:blankImage];
     }
 }

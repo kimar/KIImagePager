@@ -15,11 +15,12 @@
 
 @required
 - (NSArray *) arrayWithImages;
-- (UIViewContentMode) contentModeForImage:(NSUInteger)image isPlaceHolder:(BOOL)isPlaceHolder;
+- (UIViewContentMode) contentModeForImage:(NSUInteger)image;
 
 @optional
 - (UIImage *) placeHolderImageForImagePager;
 - (NSString *) captionForImageAtIndex:(NSUInteger)index;
+- (UIViewContentMode) contentModeForPlaceHolder;
 
 @end
 

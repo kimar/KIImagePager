@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/kimar/KIImagePager.git", :tag => '1.5.2' }
   s.platform = :ios, '5.0'
 
-  s.source_files = 'KIImagePager/KIImagePager/*.{h,m,png}'
+  s.source_files = 'KIImagePager/KIImagePager/*.{h,m}'
   s.resources = 'KIImagePager/KIImagePager/*.png'
   s.requires_arc = true
 

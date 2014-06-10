@@ -222,7 +222,9 @@
         _pageControl.numberOfPages = [(NSArray *)[_dataSource arrayWithImages] count];
     } else {
         UIImageView *blankImage = [[UIImageView alloc] initWithFrame:_scrollView.frame];
-        [blankImage setImage:[_dataSource placeHolderImageForImagePager]];
+        if ([_dataSource respondsToSelector:@selector(placeHolderImageForImagePager)]) {
+            [blankImage setImage:[_dataSource placeHolderImageForImagePager]];
+        }
         if([_dataSource respondsToSelector:@selector(contentModeForPlaceHolder)]) {
             [blankImage setContentMode:[_dataSource contentModeForPlaceHolder]];
         }

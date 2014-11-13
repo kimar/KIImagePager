@@ -39,12 +39,12 @@
 }
 
 #pragma mark KIIMagePager DataSource
-- (NSArray *) arrayWithImages
+- (NSArray *) arrayWithImages:(KIImagePager*)pager
 {
     return _imageArray;
 }
 
-- (UIViewContentMode) contentModeForImage:(NSUInteger)image
+- (UIViewContentMode) contentModeForImage:(NSUInteger)image inPager:(KIImagePager *)pager
 {
     return UIViewContentModeScaleAspectFill;
 }

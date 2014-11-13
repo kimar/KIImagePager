@@ -14,13 +14,13 @@
 @protocol KIImagePagerDataSource <NSObject>
 
 @required
-- (NSArray *) arrayWithImages;
-- (UIViewContentMode) contentModeForImage:(NSUInteger)image;
+- (NSArray *) arrayWithImages:(KIImagePager*)pager;
+- (UIViewContentMode) contentModeForImage:(NSUInteger)image inPager:(KIImagePager*)pager;
 
 @optional
-- (UIImage *) placeHolderImageForImagePager;
-- (NSString *) captionForImageAtIndex:(NSUInteger)index;
-- (UIViewContentMode) contentModeForPlaceHolder;
+- (UIImage *) placeHolderImageForImagePager:(KIImagePager*)pager;
+- (NSString *) captionForImageAtIndex:(NSUInteger)index  inPager:(KIImagePager*)pager;
+- (UIViewContentMode) contentModeForPlaceHolder:(KIImagePager*)pager;
 
 @end
 

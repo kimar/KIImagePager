@@ -39,7 +39,7 @@
 }
 
 #pragma mark - KIImagePager DataSource
-- (NSArray *) arrayWithImages
+- (NSArray *) arrayWithImages:(KIImagePager*)pager
 {
     return @[
             @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen1.png",
@@ -48,12 +48,12 @@
             ];
 }
 
-- (UIViewContentMode) contentModeForImage:(NSUInteger)image
+- (UIViewContentMode) contentModeForImage:(NSUInteger)image inPager:(KIImagePager *)pager
 {
     return UIViewContentModeScaleAspectFill;
 }
 
-- (NSString *) captionForImageAtIndex:(NSUInteger)index
+- (NSString *) captionForImageAtIndex:(NSUInteger)index inPager:(KIImagePager *)pager
 {
     return @[
              @"First screenshot",

@@ -11,6 +11,11 @@
 
 @class KIImagePager;
 
+typedef NS_ENUM(NSUInteger, MIImagePagerIndicatorPostion) {
+  MIImagePagerIndicatorPostionCenter,
+  MIImagePagerIndicatorPostionRight
+};
+
 @protocol KIImagePagerDataSource <NSObject>
 
 @required
@@ -47,6 +52,7 @@
 @property (nonatomic) BOOL bounces;
 @property (nonatomic) BOOL imageCounterDisabled;
 @property (nonatomic) BOOL hidePageControlForSinglePages; // Defaults YES
+@property (nonatomic) MIImagePagerIndicatorPostion indicatorPosition; // Defaults center and is overriden if the indicator center is given.
 
 // Slideshow
 @property (nonatomic) NSUInteger slideshowTimeInterval; // Defaults 0.0f (off)

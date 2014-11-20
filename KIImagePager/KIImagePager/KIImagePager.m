@@ -119,7 +119,7 @@
     _countLabel.center = CGPointMake(15, _imageCounterBackground.frame.size.height/2);
     [_imageCounterBackground addSubview:_countLabel];
     
-    [self addSubview:_imageCounterBackground];
+    if(!_imageCounterDisabled) [self addSubview:_imageCounterBackground];
 }
 
 - (void) initializeCaption
@@ -278,7 +278,7 @@
     _pageControl = [[UIPageControl alloc] initWithFrame:pageControlFrame];
     _pageControl.center = CGPointMake(_scrollView.frame.size.width / 2, _scrollView.frame.size.height - 12.0);
     _pageControl.userInteractionEnabled = NO;
-    [self addSubview:_pageControl];
+    if(!_indicatorDisabled) [self addSubview:_pageControl];
 }
 
 #pragma mark - ScrollView Delegate;

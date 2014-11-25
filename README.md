@@ -3,8 +3,8 @@
 [![Platform Badge](https://cocoapod-badges.herokuapp.com/p/KIImagePager/badge.png)](https://cocoapod-badges.herokuapp.com/p/KIImagePager/badge.png) [![Version Badge](https://cocoapod-badges.herokuapp.com/v/KIImagePager/badge.png)](https://cocoapod-badges.herokuapp.com/v/KIImagePager/badge.png) [![Build Status](https://travis-ci.org/kimar/KIImagePager.png)](https://travis-ci.org/kimar/KIImagePager) [![License](https://go-shields.herokuapp.com/license-MIT-blue.png)](http://opensource.org/licenses/MIT)
 
 
-### v1.5.4
-***Please be aware that v1.0.0 broke some of the existing APIs, please check KIImagePagerDatasource before updating to the current Version!***
+### v2.0.0
+***Please be aware that v2.0.0 broke some of the existing APIs, please check KIImagePagerDatasource before updating to the current Version!***
 
 ---
 
@@ -35,7 +35,7 @@ PageControl and ImageCounter can be hidden separately by setting ``imageCounterD
 Now implement it's DataSource and (optionally) Delegate methods:
 
 ```objective-c
-- (NSArray *) arrayWithImages
+- (NSArray *) arrayWithImages:(KIImagePager*)pager
 {
     return @[
             @"https://raw.github.com/kimar/tapebooth/master/Screenshots/Screen1.png",
@@ -50,7 +50,7 @@ Now implement it's DataSource and (optionally) Delegate methods:
 As you can see, it's now perfectly ok to mix urlStrings as well as UIImages inside *arrayWithImages* DataSource method.
 
 ```objective-c
-- (UIViewContentMode) contentModeForImage:(NSUInteger)image
+- (UIViewContentMode) contentModeForImage:(NSUInteger)image inPager:(KIImagePager*)pager
 {
     return UIViewContentModeScaleAspectFill;
 }
@@ -58,7 +58,7 @@ As you can see, it's now perfectly ok to mix urlStrings as well as UIImages insi
 
 Optionally you might define a caption title which will be shown above the images using the *captionForImageAtIndex* DataSource method.
 ```objective-c
-- (NSString *) captionForImageAtIndex:(NSUInteger)index
+- (NSString *) captionForImageAtIndex:(NSUInteger)index inPager:(KIImagePager*)pager
 {
     return @[
              @"First screenshot",

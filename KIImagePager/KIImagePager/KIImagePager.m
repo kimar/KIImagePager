@@ -80,10 +80,13 @@
     self.captionBackgroundColor = [UIColor whiteColor];
     self.captionTextColor = [UIColor blackColor];
     self.captionFont = [UIFont fontWithName:@"Helvetica-Light" size:12.0f];
-    self.hidePageControlForSinglePages = YES;
-    
+    self.indicatorPosition = MIImagePagerIndicatorPostionRight;
+
     [self initializeScrollView];
     [self initializePageControl];
+    self.indicatorDisabled = NO;
+    self.hidePageControlForSinglePages = YES;
+
     if(!_imageCounterDisabled) {
         [self initalizeImageCounter];
     }
@@ -140,7 +143,9 @@
     _countLabel.center = CGPointMake(15, _imageCounterBackground.frame.size.height/2);
     [_imageCounterBackground addSubview:_countLabel];
     
-    if(!_imageCounterDisabled) [self addSubview:_imageCounterBackground];
+    if(!_imageCounterDisabled) {
+        [self addSubview:_imageCounterBackground];
+    }
 }
 
 - (void) initializeCaption
@@ -295,11 +300,23 @@
 #pragma mark - PageControl Initialization
 - (void) initializePageControl
 {
-    CGRect pageControlFrame = CGRectMake(0, 0, _scrollView.frame.size.width, kPageControlHeight);
-    _pageControl = [[UIPageControl alloc] initWithFrame:pageControlFrame];
-    _pageControl.center = CGPointMake(_scrollView.frame.size.width / 2, _scrollView.frame.size.height - 12.0);
+    if (_indicatorPosition == MIImagePagerIndicatorPostionRight) {
+      NSInteger containerWidth = _scrollView.frame.size.width;
+      NSInteger containerHeight = _scrollView.frame.size.height;
+      NSInteger imagesCount = [[_dataSource arrayWithImages:self] count];
+
+      NSInteger pageControlWidth = 16*(imagesCount + 1);
+      self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(containerWidth - pageControlWidth,
+                                                                         containerHeight - kPageControlHeight, pageControlWidth, kPageControlHeight)];
+    } else {
+      CGRect pageControlFrame = CGRectMake(0, 0, _scrollView.frame.size.width, kPageControlHeight);
+      _pageControl = [[UIPageControl alloc] initWithFrame:pageControlFrame];
+      _pageControl.center = CGPointMake(_scrollView.frame.size.width / 2, _scrollView.frame.size.height - 12.0);
+    }
     _pageControl.userInteractionEnabled = NO;
-    if(!_indicatorDisabled) [self addSubview:_pageControl];
+    if(!_indicatorDisabled) {
+        [self addSubview:_pageControl];
+    }
 }
 
 #pragma mark - ScrollView Delegate;

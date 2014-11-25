@@ -9,13 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+typedef void(^KIImagePagerImageRequestBlock)(UIImage*image, NSError * error);
+
 @class KIImagePager;
 
-typedef NS_ENUM(NSUInteger, MIImagePagerIndicatorPostion) {
-  MIImagePagerIndicatorPostionCenter,
-  MIImagePagerIndicatorPostionRight
-};
-
+#pragma mark  - Data source
 @protocol KIImagePagerDataSource <NSObject>
 
 @required
@@ -29,6 +27,7 @@ typedef NS_ENUM(NSUInteger, MIImagePagerIndicatorPostion) {
 
 @end
 
+#pragma mark  - Delegate
 @protocol KIImagePagerDelegate <NSObject>
 
 @optional
@@ -37,11 +36,22 @@ typedef NS_ENUM(NSUInteger, MIImagePagerIndicatorPostion) {
 
 @end
 
+#pragma mark  - Image source
+
+@protocol KIImagePagerImageSource <NSObject>
+
+-(void) imageWithUrl:(NSURL*)url completion:(KIImagePagerImageRequestBlock)completion;
+
+@end
+
+
 @interface KIImagePager : UIView
 
 // Delegate and Datasource
 @property (weak) IBOutlet id <KIImagePagerDataSource> dataSource;
 @property (weak) IBOutlet id <KIImagePagerDelegate> delegate;
+@property (weak) IBOutlet id <KIImagePagerImageSource> imageSource;
+
 
 // General
 @property (nonatomic) UIViewContentMode contentMode;
@@ -52,7 +62,6 @@ typedef NS_ENUM(NSUInteger, MIImagePagerIndicatorPostion) {
 @property (nonatomic) BOOL bounces;
 @property (nonatomic) BOOL imageCounterDisabled;
 @property (nonatomic) BOOL hidePageControlForSinglePages; // Defaults YES
-@property (nonatomic) MIImagePagerIndicatorPostion indicatorPosition; // Defaults center and is overriden if the indicator center is given.
 
 // Slideshow
 @property (nonatomic) NSUInteger slideshowTimeInterval; // Defaults 0.0f (off)

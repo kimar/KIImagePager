@@ -12,6 +12,9 @@
 
 #import "KIImagePager.h"
 
+@interface KIImagePagerDefaultImageSource : NSObject <KIImagePagerImageSource>
+@end
+
 @interface KIImagePager () <UIScrollViewDelegate>
 {
     __weak id <KIImagePagerDataSource> _dataSource;
@@ -77,19 +80,34 @@
     self.captionBackgroundColor = [UIColor whiteColor];
     self.captionTextColor = [UIColor blackColor];
     self.captionFont = [UIFont fontWithName:@"Helvetica-Light" size:12.0f];
-    self.indicatorPosition = MIImagePagerIndicatorPostionRight;
-
+    self.hidePageControlForSinglePages = YES;
+    
     [self initializeScrollView];
     [self initializePageControl];
-    self.indicatorDisabled = NO;
-    self.hidePageControlForSinglePages = YES;
-
     if(!_imageCounterDisabled) {
         [self initalizeImageCounter];
     }
     [self initializeCaption];
+    
+    if(!self.imageSource)
+    {
+        self.imageSource = [[self class] defaultDataSource];
+    }
+    
     [self loadData];
 }
+
+
++ (id<KIImagePagerImageSource>)defaultDataSource {
+    static KIImagePagerDefaultImageSource *_defaultDataSource = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _defaultDataSource = [KIImagePagerDefaultImageSource new];
+    });
+    
+    return _defaultDataSource;
+}
+
 
 - (UIColor *) randomColor
 {
@@ -122,9 +140,7 @@
     _countLabel.center = CGPointMake(15, _imageCounterBackground.frame.size.height/2);
     [_imageCounterBackground addSubview:_countLabel];
     
-    if(!_imageCounterDisabled) {
-        [self addSubview:_imageCounterBackground];
-    }
+    if(!_imageCounterDisabled) [self addSubview:_imageCounterBackground];
 }
 
 - (void) initializeCaption
@@ -194,22 +210,22 @@
                 [_activityIndicators setObject:activityIndicator forKey:[NSString stringWithFormat:@"%d", i]];
                 
                 // Asynchronously retrieve image
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-                    NSData *imageData = [NSData dataWithContentsOfURL:
-                                         [[aImageUrls objectAtIndex:i] isKindOfClass:[NSURL class]]?
-                                         [aImageUrls objectAtIndex:i]:
-                                         [NSURL URLWithString:(NSString *)[aImageUrls objectAtIndex:i]]];
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        [imageView setImage:[UIImage imageWithData:imageData]];
-
-                        // Stop and Remove Activity Indicator
-                        UIActivityIndicatorView *indicatorView = (UIActivityIndicatorView *)[_activityIndicators objectForKey:[NSString stringWithFormat:@"%d", i]];
-                        if (indicatorView) {
-                            [indicatorView stopAnimating];
-                            [_activityIndicators removeObjectForKey:[NSString stringWithFormat:@"%d", i]];
-                        }
-                    });
-                });
+                NSURL * imageUrl  = [[aImageUrls objectAtIndex:i] isKindOfClass:[NSURL class]] ? [aImageUrls objectAtIndex:i] : [NSURL URLWithString:(NSString *)[aImageUrls objectAtIndex:i]];
+                
+                //image source is responsible for image retreiving/caching, etc...
+                [self.imageSource imageWithUrl:imageUrl
+                                    completion:^(UIImage *image, NSError *error)
+                 {
+                     if(!error) [imageView setImage:image];//should we handle error?
+                     else [imageView setImage:nil];
+                     
+                     // Stop and Remove Activity Indicator
+                     UIActivityIndicatorView *indicatorView = (UIActivityIndicatorView *)[_activityIndicators objectForKey:[NSString stringWithFormat:@"%d", i]];
+                     if (indicatorView) {
+                         [indicatorView stopAnimating];
+                         [_activityIndicators removeObjectForKey:[NSString stringWithFormat:@"%d", i]];
+                     }
+                 }];
             }
             
             // Add GestureRecognizer to ImageView
@@ -279,23 +295,11 @@
 #pragma mark - PageControl Initialization
 - (void) initializePageControl
 {
-    if (_indicatorPosition == MIImagePagerIndicatorPostionRight) {
-      NSInteger containerWidth = _scrollView.frame.size.width;
-      NSInteger containerHeight = _scrollView.frame.size.height;
-      NSInteger imagesCount = [[_dataSource arrayWithImages:self] count];
-
-      NSInteger pageControlWidth = 16*(imagesCount + 1);
-      self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(containerWidth - pageControlWidth,
-                                                                         containerHeight - kPageControlHeight, pageControlWidth, kPageControlHeight)];
-    } else {
-      CGRect pageControlFrame = CGRectMake(0, 0, _scrollView.frame.size.width, kPageControlHeight);
-      _pageControl = [[UIPageControl alloc] initWithFrame:pageControlFrame];
-      _pageControl.center = CGPointMake(_scrollView.frame.size.width / 2, _scrollView.frame.size.height - 12.0);
-    }
+    CGRect pageControlFrame = CGRectMake(0, 0, _scrollView.frame.size.width, kPageControlHeight);
+    _pageControl = [[UIPageControl alloc] initWithFrame:pageControlFrame];
+    _pageControl.center = CGPointMake(_scrollView.frame.size.width / 2, _scrollView.frame.size.height - 12.0);
     _pageControl.userInteractionEnabled = NO;
-    if(!_indicatorDisabled) {
-        [self addSubview:_pageControl];
-    }
+    if(!_indicatorDisabled) [self addSubview:_pageControl];
 }
 
 #pragma mark - ScrollView Delegate;
@@ -433,3 +437,26 @@
 }
 
 @end
+
+
+
+#pragma mark  - Image source
+
+
+@implementation KIImagePagerDefaultImageSource
+
+-(void) imageWithUrl:(NSURL*)url completion:(KIImagePagerImageRequestBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSData *imageData = [NSData dataWithContentsOfURL:url];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            if(completion) completion([UIImage imageWithData:imageData],nil);
+        });
+    });
+}
+
+@end
+
+
+
+

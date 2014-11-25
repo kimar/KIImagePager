@@ -12,6 +12,9 @@
 
 #import "KIImagePager.h"
 
+@interface KIImagePagerDefaultImageSource : NSObject <KIImagePagerImageSource>
+@end
+
 @interface KIImagePager () <UIScrollViewDelegate>
 {
     __weak id <KIImagePagerDataSource> _dataSource;
@@ -85,8 +88,26 @@
         [self initalizeImageCounter];
     }
     [self initializeCaption];
+    
+    if(!self.imageSource)
+    {
+        self.imageSource = [[self class] defaultDataSource];
+    }
+    
     [self loadData];
 }
+
+
++ (id<KIImagePagerImageSource>)defaultDataSource {
+    static KIImagePagerDefaultImageSource *_defaultDataSource = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _defaultDataSource = [KIImagePagerDefaultImageSource new];
+    });
+    
+    return _defaultDataSource;
+}
+
 
 - (UIColor *) randomColor
 {
@@ -189,22 +210,22 @@
                 [_activityIndicators setObject:activityIndicator forKey:[NSString stringWithFormat:@"%d", i]];
                 
                 // Asynchronously retrieve image
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-                    NSData *imageData = [NSData dataWithContentsOfURL:
-                                         [[aImageUrls objectAtIndex:i] isKindOfClass:[NSURL class]]?
-                                         [aImageUrls objectAtIndex:i]:
-                                         [NSURL URLWithString:(NSString *)[aImageUrls objectAtIndex:i]]];
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        [imageView setImage:[UIImage imageWithData:imageData]];
-
-                        // Stop and Remove Activity Indicator
-                        UIActivityIndicatorView *indicatorView = (UIActivityIndicatorView *)[_activityIndicators objectForKey:[NSString stringWithFormat:@"%d", i]];
-                        if (indicatorView) {
-                            [indicatorView stopAnimating];
-                            [_activityIndicators removeObjectForKey:[NSString stringWithFormat:@"%d", i]];
-                        }
-                    });
-                });
+                NSURL * imageUrl  = [[aImageUrls objectAtIndex:i] isKindOfClass:[NSURL class]] ? [aImageUrls objectAtIndex:i] : [NSURL URLWithString:(NSString *)[aImageUrls objectAtIndex:i]];
+                
+                //image source is responsible for image retreiving/caching, etc...
+                [self.imageSource imageWithUrl:imageUrl
+                                    completion:^(UIImage *image, NSError *error)
+                 {
+                     if(!error) [imageView setImage:image];//should we handle error?
+                     else [imageView setImage:nil];
+                     
+                     // Stop and Remove Activity Indicator
+                     UIActivityIndicatorView *indicatorView = (UIActivityIndicatorView *)[_activityIndicators objectForKey:[NSString stringWithFormat:@"%d", i]];
+                     if (indicatorView) {
+                         [indicatorView stopAnimating];
+                         [_activityIndicators removeObjectForKey:[NSString stringWithFormat:@"%d", i]];
+                     }
+                 }];
             }
             
             // Add GestureRecognizer to ImageView
@@ -416,3 +437,26 @@
 }
 
 @end
+
+
+
+#pragma mark  - Image source
+
+
+@implementation KIImagePagerDefaultImageSource
+
+-(void) imageWithUrl:(NSURL*)url completion:(KIImagePagerImageRequestBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSData *imageData = [NSData dataWithContentsOfURL:url];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            if(completion) completion([UIImage imageWithData:imageData],nil);
+        });
+    });
+}
+
+@end
+
+
+
+

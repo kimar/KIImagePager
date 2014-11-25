@@ -80,13 +80,10 @@
     self.captionBackgroundColor = [UIColor whiteColor];
     self.captionTextColor = [UIColor blackColor];
     self.captionFont = [UIFont fontWithName:@"Helvetica-Light" size:12.0f];
-    self.indicatorPosition = MIImagePagerIndicatorPostionRight;
-
+    self.hidePageControlForSinglePages = YES;
+    
     [self initializeScrollView];
     [self initializePageControl];
-    self.indicatorDisabled = NO;
-    self.hidePageControlForSinglePages = YES;
-
     if(!_imageCounterDisabled) {
         [self initalizeImageCounter];
     }

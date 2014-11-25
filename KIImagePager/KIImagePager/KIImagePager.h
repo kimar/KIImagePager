@@ -11,10 +11,7 @@
 
 typedef void(^KIImagePagerImageRequestBlock)(UIImage*image, NSError * error);
 
-typedef NS_ENUM(NSUInteger, MIImagePagerIndicatorPostion) {
-  MIImagePagerIndicatorPostionCenter,
-  MIImagePagerIndicatorPostionRight
-};
+@class KIImagePager;
 
 #pragma mark  - Data source
 @protocol KIImagePagerDataSource <NSObject>

@@ -52,6 +52,7 @@ typedef void(^KIImagePagerImageRequestBlock)(UIImage*image, NSError * error);
 @property (weak) IBOutlet id <KIImagePagerDelegate> delegate;
 @property (weak) IBOutlet id <KIImagePagerImageSource> imageSource;
 
+
 // General
 @property (nonatomic) UIViewContentMode contentMode;
 @property (nonatomic) UIScrollView *scrollView;
@@ -61,7 +62,6 @@ typedef void(^KIImagePagerImageRequestBlock)(UIImage*image, NSError * error);
 @property (nonatomic) BOOL bounces;
 @property (nonatomic) BOOL imageCounterDisabled;
 @property (nonatomic) BOOL hidePageControlForSinglePages; // Defaults YES
-@property (nonatomic) MIImagePagerIndicatorPostion indicatorPosition; // Defaults center and is overriden if the indicator center is given.
 
 // Slideshow
 @property (nonatomic) NSUInteger slideshowTimeInterval; // Defaults 0.0f (off)

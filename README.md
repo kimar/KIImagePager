@@ -2,12 +2,6 @@
 
 [![Platform Badge](https://cocoapod-badges.herokuapp.com/p/KIImagePager/badge.png)](https://cocoapod-badges.herokuapp.com/p/KIImagePager/badge.png) [![Version Badge](https://cocoapod-badges.herokuapp.com/v/KIImagePager/badge.png)](https://cocoapod-badges.herokuapp.com/v/KIImagePager/badge.png) [![Build Status](https://travis-ci.org/kimar/KIImagePager.png)](https://travis-ci.org/kimar/KIImagePager) [![License](https://go-shields.herokuapp.com/license-MIT-blue.png)](http://opensource.org/licenses/MIT)
 
-
-### v2.1.0
-***Please be aware that v2.0.0 broke some of the existing APIs, please check KIImagePagerDatasource before updating to the current Version!***
-
----
-
 This UIView Subclass is used to present Images loaded from the Web and is inspired from foursquare's Image Slideshow. The used will be downloaded asynchronously. Former dependencies on SDWebImage have been removed.
 
 This is what the ImagePager looks like when it's set up:

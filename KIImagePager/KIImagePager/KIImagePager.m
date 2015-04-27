@@ -195,6 +195,7 @@
             [imageView setBackgroundColor:[UIColor clearColor]];
             [imageView setContentMode:[_dataSource contentModeForImage:i inPager:self]];
             [imageView setTag:i];
+            [imageView setClipsToBounds:YES];
 
             if([[aImageUrls objectAtIndex:i] isKindOfClass:[UIImage class]]) {
                 // Set ImageView's Image directly

@@ -362,6 +362,9 @@
 {
     if (_slideshowTimeInterval > 0) {
         if ([(NSArray *)[_dataSource arrayWithImages:self] count] > 1) {
+            if(_slideshowTimer){
+                [_slideshowTimer invalidate];
+            }
             _slideshowTimer = [NSTimer scheduledTimerWithTimeInterval:_slideshowTimeInterval target:self selector:@selector(slideshowTick:) userInfo:nil repeats:YES];
         }
     }

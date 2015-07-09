@@ -76,4 +76,3 @@ typedef void(^KIImagePagerImageRequestBlock)(UIImage*image, NSError * error);
 - (void) setCurrentPage:(NSUInteger)currentPage animated:(BOOL)animated;
 
 @end
-

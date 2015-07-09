@@ -62,7 +62,6 @@ typedef void(^KIImagePagerImageRequestBlock)(UIImage*image, NSError * error);
 @property (nonatomic) BOOL bounces;
 @property (nonatomic) BOOL imageCounterDisabled;
 @property (nonatomic) BOOL hidePageControlForSinglePages; // Defaults YES
-@property (nonatomic) UIImage loadingImage;
 
 // Slideshow
 @property (nonatomic) NSUInteger slideshowTimeInterval; // Defaults 0.0f (off)

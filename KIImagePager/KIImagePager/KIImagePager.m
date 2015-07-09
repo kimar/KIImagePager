@@ -192,13 +192,16 @@
         for (int i = 0; i < [aImageUrls count]; i++) {
             CGRect imageFrame = CGRectMake(_scrollView.frame.size.width * i, 0, _scrollView.frame.size.width, _scrollView.frame.size.height);
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
-            if (loadingImage) {
-              imageView.image = loadingImage;
-            }
             [imageView setBackgroundColor:[UIColor clearColor]];
             [imageView setContentMode:[_dataSource contentModeForImage:i inPager:self]];
             [imageView setTag:i];
             [imageView setClipsToBounds:YES];
+            if ([_dataSource respondsToSelector:@selector(placeHolderImageForImagePager:)]) {
+                [imageView setImage:[_dataSource placeHolderImageForImagePager:self]];
+            }
+            if([_dataSource respondsToSelector:@selector(contentModeForPlaceHolder:)]) {
+                [imageView setContentMode:[_dataSource contentModeForPlaceHolder:self]];
+            }
 
             if([[aImageUrls objectAtIndex:i] isKindOfClass:[UIImage class]]) {
                 // Set ImageView's Image directly

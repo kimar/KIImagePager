@@ -258,6 +258,7 @@
         }
         [_scrollView addSubview:blankImage];
     }
+    self.hidePageControlForSinglePages = self.hidePageControlForSinglePages;
 }
 
 - (void) imageTapped:(UITapGestureRecognizer *)sender

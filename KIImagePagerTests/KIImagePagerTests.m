@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Marcus Kida. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 #import "KIImagePager.h"
 
 @interface KIImagePager (Private)
@@ -15,7 +15,7 @@
 
 @end
 
-@interface KIImagePagerTests : SenTestCase <KIImagePagerDataSource>
+@interface KIImagePagerTests : XCTestCase <KIImagePagerDataSource>
 {
     KIImagePager *_sut;
     id _imageArray;
@@ -55,7 +55,7 @@
     _imageArray = [[NSArray alloc] initWithObjects:
                    [UIImage imageNamed:@"KICamera"],
                    nil];
-    STAssertNoThrow([_sut initialize], nil);
+    XCTAssertNoThrow([_sut initialize], "KIImagePager should not throw an exception.");
 }
 
 - (void) testKIImagePagerTakesImagesFromNSMutableArray
@@ -63,7 +63,7 @@
     _imageArray = [[NSMutableArray alloc] initWithObjects:
                    [UIImage imageNamed:@"KICamera"],
                    nil];
-    STAssertNoThrow([_sut initialize], nil);
+    XCTAssertNoThrow([_sut initialize], "KIImagePager should not throw an exception.");
 }
 
 @end

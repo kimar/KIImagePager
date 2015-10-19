@@ -258,6 +258,7 @@
         }
         [_scrollView addSubview:blankImage];
     }
+    [self updatePageControl];
 }
 
 - (void) imageTapped:(UITapGestureRecognizer *)sender
@@ -413,14 +414,18 @@
 
 - (void) setHidePageControlForSinglePages:(BOOL)hidePageControlForSinglePages
 {
-    _hidePageControlForSinglePages = hidePageControlForSinglePages;
-    if (hidePageControlForSinglePages) {
-        if ([(NSArray *)[_dataSource arrayWithImages:self] count] < 2) {
-            [_pageControl setHidden:YES];
-            return;
-        }
+  _hidePageControlForSinglePages = hidePageControlForSinglePages;
+  [self updatePageControl];
+}
+
+- (void)updatePageControl {
+  if (self.hidePageControlForSinglePages) {
+    if ([(NSArray *)[_dataSource arrayWithImages:self] count] < 2) {
+      [_pageControl setHidden:YES];
+      return;
     }
-    [_pageControl setHidden:NO];
+  }
+  [_pageControl setHidden:NO];
 }
 
 - (void) setPageControlCenter:(CGPoint)pageControlCenter

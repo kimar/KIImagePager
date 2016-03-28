@@ -7,10 +7,10 @@ This UIView Subclass is used to present Images loaded from the Web and is inspir
 
 This is what the ImagePager looks like when it's set up:
 
-![Demo GIF Animation](http://kimar.github.io/screenshots/kiimagepager/demo.gif)
+![Demo GIF Animation](https://raw.githubusercontent.com/kimar/blog.kida.io/master/screenshots/kiimagepager/demo.gif)
 
 Implementing the ImagePager is fairly easy, just set it up in Interface Builder:
-![Setup in Interface Builder](http://kimar.github.io/screenshots/kiimagepager/ibsetup_xcode5.png)
+![Setup in Interface Builder](https://raw.githubusercontent.com/kimar/blog.kida.io/master/screenshots/kiimagepager/ibsetup_xcode5.png)
 
 Optionally customize the PageControl's appearance:
 

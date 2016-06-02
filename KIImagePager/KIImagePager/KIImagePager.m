@@ -226,6 +226,8 @@
                      if(!error) [imageView setImage:image];//should we handle error?
                      else [imageView setImage:nil];
 
+                     [imageView setContentMode:[_dataSource contentModeForImage:i inPager:self]];
+
                      // Stop and Remove Activity Indicator
                      UIActivityIndicatorView *indicatorView = (UIActivityIndicatorView *)[_activityIndicators objectForKey:[NSString stringWithFormat:@"%d", i]];
                      if (indicatorView) {

@@ -75,7 +75,6 @@
 #pragma mark - General
 - (void) initialize
 {
-    self.clipsToBounds = YES;
     self.slideshowShouldCallScrollToDelegate = YES;
     self.captionBackgroundColor = [UIColor whiteColor];
     self.captionTextColor = [UIColor blackColor];

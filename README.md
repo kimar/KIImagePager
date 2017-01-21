@@ -3,6 +3,10 @@
 [![Twitter: @Kidmar](https://img.shields.io/badge/contact-@Kidmar-blue.svg?style=flat)](https://twitter.com/Kidmar)
 [![Platform Badge](https://cocoapod-badges.herokuapp.com/p/KIImagePager/badge.png)](https://cocoapod-badges.herokuapp.com/p/KIImagePager/badge.png) [![Version Badge](https://cocoapod-badges.herokuapp.com/v/KIImagePager/badge.png)](https://cocoapod-badges.herokuapp.com/v/KIImagePager/badge.png) [![Build Status](https://travis-ci.org/kimar/KIImagePager.png)](https://travis-ci.org/kimar/KIImagePager) [![License](https://go-shields.herokuapp.com/license-MIT-blue.png)](http://opensource.org/licenses/MIT)
 
+### Deprecation Notice
+
+**Please note I've written this library years ago to be used in a customer's project, it's deprecated by now. In case anyone wants to raise a PR to fix issues or improve something: Go for it, I'll review and merge if suitable. Other than that I'm not going to invest any more work into this. Sorry folks**
+
 This UIView Subclass is used to present Images loaded from the Web and is inspired from foursquare's Image Slideshow. The used will be downloaded asynchronously. Former dependencies on SDWebImage have been removed.
 
 This is what the ImagePager looks like when it's set up:

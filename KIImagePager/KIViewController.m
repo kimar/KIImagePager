@@ -53,7 +53,7 @@
     return UIViewContentModeScaleAspectFill;
 }
 
-- (NSString *) captionForImageAtIndex:(NSUInteger)index inPager:(KIImagePager *)pager
+- (NSString *) captionForImageAtIndex:(NSInteger)index inPager:(KIImagePager *)pager
 {
     return @[
              @"First screenshot",

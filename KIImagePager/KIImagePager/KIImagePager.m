@@ -330,7 +330,7 @@
 }
 
 #pragma mark - Delegate Helper
-- (void) updateCaptionLabelForImageAtIndex:(NSUInteger)index
+- (void) updateCaptionLabelForImageAtIndex:(NSInteger)index
 {
     if ([_dataSource respondsToSelector:@selector(captionForImageAtIndex:inPager:)]) {
         if ([[_dataSource captionForImageAtIndex:index inPager:self] length] > 0) {

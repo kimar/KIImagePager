@@ -22,7 +22,7 @@ typedef void(^KIImagePagerImageRequestBlock)(UIImage*image, NSError * error);
 
 @optional
 - (UIImage *) placeHolderImageForImagePager:(KIImagePager*)pager;
-- (NSString *) captionForImageAtIndex:(NSUInteger)index  inPager:(KIImagePager*)pager;
+- (NSString *) captionForImageAtIndex:(NSInteger)index  inPager:(KIImagePager*)pager;
 - (UIViewContentMode) contentModeForPlaceHolder:(KIImagePager*)pager;
 
 @end

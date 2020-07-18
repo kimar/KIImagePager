@@ -219,19 +219,24 @@
                 NSURL * imageUrl  = [[aImageUrls objectAtIndex:i] isKindOfClass:[NSURL class]] ? [aImageUrls objectAtIndex:i] : [NSURL URLWithString:(NSString *)[aImageUrls objectAtIndex:i]];
 
                 //image source is responsible for image retreiving/caching, etc...
+                __weak typeof(self) weakSelf = self;
                 [self.imageSource imageWithUrl:imageUrl
                                     completion:^(UIImage *image, NSError *error)
                  {
                      if(!error) [imageView setImage:image];//should we handle error?
                      else [imageView setImage:nil];
+                    
+                    __strong typeof(self) strongSelf = weakSelf;
+                    
+                    if (!strongSelf) return;
 
-                     [imageView setContentMode:[_dataSource contentModeForImage:i inPager:self]];
+                     [imageView setContentMode:[strongSelf->_dataSource contentModeForImage:i inPager:strongSelf]];
 
                      // Stop and Remove Activity Indicator
-                     UIActivityIndicatorView *indicatorView = (UIActivityIndicatorView *)[_activityIndicators objectForKey:[NSString stringWithFormat:@"%d", i]];
+                    UIActivityIndicatorView *indicatorView = (UIActivityIndicatorView *)[strongSelf->_activityIndicators objectForKey:[NSString stringWithFormat:@"%d", i]];
                      if (indicatorView) {
                          [indicatorView stopAnimating];
-                         [_activityIndicators removeObjectForKey:[NSString stringWithFormat:@"%d", i]];
+                         [strongSelf->_activityIndicators removeObjectForKey:[NSString stringWithFormat:@"%d", i]];
                      }
                  }];
             }

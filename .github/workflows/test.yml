@@ -11,15 +11,13 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        device: ["iPhone 11"]
-        scheme: ["KIImagePager"]
+        destination: ["platform=iOS Simulator,OS=13.6,name=iPhone 11"]
     steps:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Bundle Install
         run: bundle install
       - name: Build and test
-        run: bundle exec fastlane scan --device "${device}" --scheme "${scheme}"
+        run: xcodebuild clean test -project KIImagePager.xcodeproj -scheme KIImagePager -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
         env:
-          scheme: ${{ matrix.scheme }}
-          device: ${{ matrix.device }}
+          destination: ${{ matrix.destination }}

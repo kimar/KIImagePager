@@ -15,8 +15,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Bundle Install
-        run: bundle install
       - name: Build and test
         run: xcodebuild clean test -project KIImagePager.xcodeproj -scheme KIImagePager -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
         env:

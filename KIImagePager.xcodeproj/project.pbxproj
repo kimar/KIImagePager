@@ -209,7 +209,6 @@
 				2AE758C81791721B00EC65B5 /* Sources */,
 				2AE758C91791721B00EC65B5 /* Frameworks */,
 				2AE758CA1791721B00EC65B5 /* Resources */,
-				2AE758CB1791721B00EC65B5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -277,22 +276,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		2AE758CB1791721B00EC65B5 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2A10304217114B9100333366 /* Sources */ = {
@@ -435,11 +418,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KIImagePager.app/KIImagePager";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-					"$(inherited)",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KIImagePagerTests/KIImagePagerTests-Prefix.pch";
 				INFOPLIST_FILE = "KIImagePagerTests/KIImagePagerTests-Info.plist";
@@ -452,11 +430,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KIImagePager.app/KIImagePager";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-					"$(inherited)",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KIImagePagerTests/KIImagePagerTests-Prefix.pch";
 				INFOPLIST_FILE = "KIImagePagerTests/KIImagePagerTests-Info.plist";

@@ -16,13 +16,17 @@ import PackageDescription
      targets: [
          .target(
              name: "KIImagePager",
-             dependencies: [],
              path: "KIImagePager",
              sources: ["KIImagePager"],
              publicHeadersPath: "KIImagePager",
              cSettings: [
                  .headerSearchPath("KIImagePager")
              ]
-         )
+         ),
+         .testTarget(
+            name: "KIImagePagerTests",
+            dependencies: ["KIImagePager"],
+            path: "KIImagePagerTests"
+         ),
      ]
  )

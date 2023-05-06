@@ -12,8 +12,7 @@ This is what the ImagePager looks like when it's set up:
 
 ![Demo GIF Animation](https://kimar.github.io/screenshots/kiimagepager/demo.gif)
 
-Implementing the ImagePager is fairly easy, just set it up in Interface Builder:
-![Setup in Interface Builder](https://kimar.github.io/screenshots/kiimagepager/ibsetup_xcode5.png)
+Implementing the ImagePager is fairly easy, just set it up in Interface Builder or use it in code directly.
 
 Optionally customize the PageControl's appearance:
 

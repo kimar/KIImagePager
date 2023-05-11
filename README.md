@@ -1,7 +1,6 @@
 ## KIImagePager 
 
-[![Twitter: @Kidmar](https://img.shields.io/badge/contact-@Kidmar-blue.svg?style=flat)](https://twitter.com/Kidmar)
-[![Platform Badge](https://cocoapod-badges.herokuapp.com/p/KIImagePager/badge.png)](https://cocoapod-badges.herokuapp.com/p/KIImagePager/badge.png) [![Version Badge](https://cocoapod-badges.herokuapp.com/v/KIImagePager/badge.png)](https://cocoapod-badges.herokuapp.com/v/KIImagePager/badge.png) ![Test](https://github.com/kimar/KIImagePager/workflows/Test/badge.svg) [![License](https://go-shields.herokuapp.com/license-MIT-blue.png)](http://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/license-MIT-blue.png)](http://opensource.org/licenses/MIT)
 
 ### Deprecation Notice
 
@@ -13,8 +12,7 @@ This is what the ImagePager looks like when it's set up:
 
 ![Demo GIF Animation](https://kimar.github.io/screenshots/kiimagepager/demo.gif)
 
-Implementing the ImagePager is fairly easy, just set it up in Interface Builder:
-![Setup in Interface Builder](https://kimar.github.io/screenshots/kiimagepager/ibsetup_xcode5.png)
+Implementing the ImagePager is fairly easy, just set it up in Interface Builder or use it in code directly.
 
 Optionally customize the PageControl's appearance:
 

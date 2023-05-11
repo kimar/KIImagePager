@@ -6,7 +6,8 @@ import PackageDescription
  let package = Package(
      name: "KIImagePager",
      platforms: [
-         .iOS(.v8)
+         .iOS(.v8),
+         .tvOS(.v9)
      ],
      products: [
          .library(

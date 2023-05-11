@@ -169,7 +169,9 @@
 {
     _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     _scrollView.delegate = self;
+    #if !TARGET_OS_TV
     _scrollView.pagingEnabled = YES;
+    #endif
 	_scrollView.bounces = _bounces;
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.showsVerticalScrollIndicator = NO;

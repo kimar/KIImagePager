@@ -4,8 +4,7 @@
   "summary": "This UIView Subclass is used to present Images loaded from the Web and is inspired from foursquare's Image Slideshow.",
   "homepage": "https://github.com/kimar/KIImagePager",
   "screenshots": [
-    "http://kimar.github.io/screenshots/kiimagepager/1ios7.png",
-    "http://kimar.github.io/screenshots/kiimagepager/2ios7.png"
+    "http://kimar.github.io/screenshots/kiimagepager/screenshot.png"
   ],
   "license": {
     "type": "MIT",
@@ -19,8 +18,7 @@
     "tag": "2.1.4"
   },
   "platforms": {
-    "ios": "12.0",
-    "tvos": "12.0"
+    "ios": "12.0"
   },
   "source_files": "KIImagePager/KIImagePager/*.{h,m}",
   "resources": "KIImagePager/KIImagePager/*.png",

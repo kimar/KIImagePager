@@ -127,7 +127,8 @@
     _imageCounterBackground.layer.cornerRadius = 5.0f;
 
     UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 18, 18)];
-    [icon setImage:[UIImage imageNamed:@"KICamera"]];
+    UIImage* image = [UIImage imageNamed:@"KICamera" inBundle:[NSBundle bundleForClass:[KIImagePager class]] compatibleWithTraitCollection:nil];
+    [icon setImage:image];
     icon.center = CGPointMake(_imageCounterBackground.frame.size.width-18, _imageCounterBackground.frame.size.height/2);
     [_imageCounterBackground addSubview:icon];
 

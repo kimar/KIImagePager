@@ -10,7 +10,7 @@ This UIView Subclass is used to present Images loaded from the Web and is inspir
 
 This is what the ImagePager looks like when it's set up:
 
-![Demo GIF Animation](https://kimar.github.io/screenshots/kiimagepager/demo.gif)
+![Demo GIF Animation](https://raw.githubusercontent.com/kimar/KIImagePager/main/.meta/demo.gif)
 
 Implementing the ImagePager is fairly easy, just set it up in Interface Builder or use it in code directly.
 

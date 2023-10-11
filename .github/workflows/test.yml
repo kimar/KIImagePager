@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode_15.0.0.app
       - name: Build and test
         run: xcodebuild clean test -project KIImagePager.xcodeproj -scheme KIImagePager -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
         env:

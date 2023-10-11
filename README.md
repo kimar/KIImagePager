@@ -1,10 +1,10 @@
-## KIImagePager 
+## KIImagePager
 
 [![License](https://img.shields.io/badge/license-MIT-blue.png)](http://opensource.org/licenses/MIT)
 
 ### Deprecation Notice
 
-**Please note I've written this library years ago to be used in a customer's project, it's deprecated by now. In case anyone wants to raise a PR to fix issues or improve something: Go for it, I'll review and merge if suitable. Other than that I'm not going to invest any more work into this. Sorry folks**
+**Please note I've written this library years ago to be used in a customer's project, it's deprecated by now. In case anyone wants to raise a PR to fix issues or improve something: Go for it, I'll review and merge if suitable.**
 
 This UIView Subclass is used to present Images loaded from the Web and is inspired from foursquare's Image Slideshow. The used will be downloaded asynchronously. Former dependencies on SDWebImage have been removed.
 
@@ -20,14 +20,14 @@ Optionally customize the PageControl's appearance:
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+
     _imagePager.pageControl.currentPageIndicatorTintColor = [UIColor lightGrayColor];
     _imagePager.pageControl.pageIndicatorTintColor = [UIColor blackColor];
     _imagePager.pageControlCenter = CGPointMake(CGRectGetWidth(_imagePager.frame) / 2, CGRectGetHeight(_imagePager.frame) - 42);
 }
 ```
 
-PageControl and ImageCounter can be hidden separately by setting ``imageCounterDisabled`` and ``imageCounterDisabled`` property. There is also a property ``hidePageControlForSinglePages``.
+PageControl and ImageCounter can be hidden separately by setting `imageCounterDisabled` and `imageCounterDisabled` property. There is also a property `hidePageControlForSinglePages`.
 
 Now implement it's DataSource and (optionally) Delegate methods:
 
@@ -44,7 +44,7 @@ Now implement it's DataSource and (optionally) Delegate methods:
 }
 ```
 
-As you can see, it's now perfectly ok to mix urlStrings as well as UIImages inside *arrayWithImages* DataSource method.
+As you can see, it's now perfectly ok to mix urlStrings as well as UIImages inside _arrayWithImages_ DataSource method.
 
 ```objective-c
 - (UIViewContentMode) contentModeForImage:(NSUInteger)image inPager:(KIImagePager*)pager
@@ -53,7 +53,8 @@ As you can see, it's now perfectly ok to mix urlStrings as well as UIImages insi
 }
 ```
 
-Optionally you might define a caption title which will be shown above the images using the *captionForImageAtIndex* DataSource method.
+Optionally you might define a caption title which will be shown above the images using the _captionForImageAtIndex_ DataSource method.
+
 ```objective-c
 - (NSString *) captionForImageAtIndex:(NSUInteger)index inPager:(KIImagePager*)pager
 {
@@ -66,10 +67,10 @@ Optionally you might define a caption title which will be shown above the images
 ```
 
 If you'd like to get a SlideShow, just give it an interval for the time between those single slides:
+
 ```objective-c
 _imagePager.slideshowTimeInterval = 1.5f;
 ```
-
 
 **The MIT License (MIT)**
 
